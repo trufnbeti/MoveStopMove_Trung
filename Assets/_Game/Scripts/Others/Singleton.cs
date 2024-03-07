@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T _ins;
+    protected static T _ins;
 
     public static T Ins
     {

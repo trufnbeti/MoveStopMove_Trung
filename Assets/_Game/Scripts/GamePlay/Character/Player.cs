@@ -9,7 +9,7 @@ public class Player : Character
 	[SerializeField] private float moveSpeed;
 	[SerializeField] private Rigidbody rb;
 	private CounterTime counter = new CounterTime();
-	private bool IsCanUpdate => GameManager.Ins.IsState(GameState.GamePlay);
+	private bool IsCanUpdate => GameManager.Ins.IsState(GameState.Gameplay);
 	private bool isMoving = false;
 	private float horizontal;
 	private float vertical;

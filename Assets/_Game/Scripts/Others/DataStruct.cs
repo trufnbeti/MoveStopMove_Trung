@@ -1,34 +1,19 @@
 public enum CameraState {
 	MainMenu,
-	GamePlay,
+	Gameplay,
 	Shop
 }
-public enum ColorType {
-	None = 0,
-	Black = 1,
-	Blue = 2,
-	Green = 3,
-	Grey = 4,
-	Orange = 5,
-	Purple = 6,
-	Red = 7,
-	Yellow = 8
+public enum EventID {
+	Play,
+	
 }
 
-public enum GameState
-{
+public enum GameState {
 	MainMenu = 1,
-	GamePlay = 2,
+	Gameplay = 2,
 	Setting = 3,
 	Finish = 4,
 	Revive = 5,
-}
-
-public enum CharacterState {
-	Idle,
-	Run,
-	Attack,
-	Dead
 }
 
 public enum ParticleType {
@@ -143,8 +128,7 @@ public enum HatType {
 	Police = PoolType.Hat_Police,
 }
 
-public enum SkinType
-{
+public enum SkinType {
 	Normal = PoolType.Skin_Normal,
 	Devil = PoolType.Skin_Devil,
 	Angle = PoolType.Skin_Angle,
@@ -177,7 +161,6 @@ public enum PrefKey {
 	PlayerPant,
 	PlayerAccessory,
 	PlayerSkin,
-	
 }
 
 

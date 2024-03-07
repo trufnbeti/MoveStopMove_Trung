@@ -10,8 +10,7 @@ public class GameManager : Singleton<GameManager> {
         _gameState = state;
     }
     public bool IsState(GameState state) => _gameState == state;
-    private void Awake()
-    {
+    private void Awake() {
         ChangeState(GameState.MainMenu);
         // Tranh viec nguoi choi cham da diem vao man hinh
         Input.multiTouchEnabled = false;
@@ -23,14 +22,14 @@ public class GameManager : Singleton<GameManager> {
         // Xu tai tho
         int maxScreenHeight = 1920;
         float ratio = (float)Screen.currentResolution.width / (float)Screen.currentResolution.height;
-        if (Screen.currentResolution.height > maxScreenHeight)
-        {
+        if (Screen.currentResolution.height > maxScreenHeight) {
             Screen.SetResolution(Mathf.RoundToInt(ratio * (float)maxScreenHeight), maxScreenHeight, true);
         }
+        
+        UserData.Ins.OnInitData();
     }
 
     private void Start() {
-        ChangeState(GameState.GamePlay);
-        CameraFollow.Ins.ChangeState(CameraState.GamePlay);
+        UIManager.Ins.OpenUI<UIMainMenu>();
     }
 }

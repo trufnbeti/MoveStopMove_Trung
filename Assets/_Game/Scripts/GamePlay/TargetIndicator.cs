@@ -50,7 +50,7 @@ public class TargetIndicator : GameUnit
     {
         SetScore(0);
         SetColor(new Color(Random.value, Random.value, Random.value, 1));
-        SetAlpha(GameManager.Ins.IsState(GameState.GamePlay) ? 1 : 0);
+        SetAlpha(GameManager.Ins.IsState(GameState.Gameplay) ? 1 : 0);
     }
 
     public void SetTarget(Transform target)

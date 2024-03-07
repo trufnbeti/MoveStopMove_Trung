@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelManager : Singleton<LevelManager> {
     [SerializeField] private Level[] levels;
@@ -12,17 +14,34 @@ public class LevelManager : Singleton<LevelManager> {
     private int levelIdx;
     public int TotalCharater => botLeft + bots.Count + 1;
 
+    #region Event
+
+    private Action<object> actionPlay;
+    
+
+    #endregion
+
     private void Start() {
         levelIdx = 0;
         OnLoadLevel(levelIdx);
         OnInit();
     }
 
+    private void OnEnable() {
+        actionPlay = (param) => OnPlay();
+        
+        this.RegisterListener(EventID.Play, actionPlay);
+    }
+
+    private void OnDisable() {
+        this.RemoveListener(EventID.Play, actionPlay);
+    }
+
     private void OnInit() {
         player.OnInit();
 
         for (int i = 0; i < currentLevel.botReal; ++i) {
-            SpawnBot(new PatrolState());
+            SpawnBot(null);
         }
 
         isRevive = false;
@@ -36,6 +55,13 @@ public class LevelManager : Singleton<LevelManager> {
         }
 
         currentLevel = Instantiate(levels[level]);
+    }
+
+    public void OnPlay() {
+        for (int i = 0; i < bots.Count; ++i) {
+            bots[i].ChangeState(new PatrolState());
+        }
+        CameraFollow.Ins.ChangeState(CameraState.Gameplay);
     }
 
     public Vector3 RandomPoint() {
