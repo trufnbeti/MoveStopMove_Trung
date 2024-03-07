@@ -22,6 +22,8 @@ public class Bullet : GameUnit
 			Character hit = CacheComponent.GetCharacter(other);
 			
 			if (hit != null && hit != character) {
+				character.AddScore();
+				SimplePool.Despawn(this);
 				hit.OnHit();
 			}
 		}

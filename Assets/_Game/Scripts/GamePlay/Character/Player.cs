@@ -13,13 +13,13 @@ public class Player : Character
 	private bool isMoving = false;
 	private float horizontal;
 	private float vertical;
-	[SerializeField]private Vector3 direction;
+	private Vector3 direction;
 	
-	SkinType skinType = SkinType.Normal;
-	WeaponType weaponType = WeaponType.Candy_1;
-	HatType hatType = HatType.Cap;
-	AccessoryType accessoryType = AccessoryType.Headphone;
-	PantType pantType = PantType.Pant_1;
+	private SkinType skinType = SkinType.Normal;
+	private WeaponType weaponType = WeaponType.Candy_1;
+	private HatType hatType = HatType.Cap;
+	private AccessoryType accessoryType = AccessoryType.Headphone;
+	private PantType pantType = PantType.Pant_1;
 
 	public override void OnInit() {
 		OnTakeClothsData();
@@ -28,18 +28,16 @@ public class Player : Character
 		indicator.SetName("YOU");
 	}
 	
-	public void OnTakeClothsData()
-	{
-		// take old cloth data
+	public void OnTakeClothsData() {
 		skinType = UserData.Ins.playerSkin;
 		weaponType = UserData.Ins.playerWeapon;
 		hatType = UserData.Ins.playerHat;
 		accessoryType = UserData.Ins.playerAccessory;
 		pantType = UserData.Ins.playerPant;
 	}
-	
-	public override void WearClothes()
-	{
+
+	#region Skin
+	public override void WearClothes() {
 		base.WearClothes(); 
 
 		ChangeSkin(skinType);
@@ -52,6 +50,30 @@ public class Player : Character
 	public override void RemoveTarget(Character target) {
 		base.RemoveTarget(target);
 		target.SetMask(false);
+	}
+	#endregion
+
+	public override void OnAttack() {
+		base.OnAttack();
+		if (target != null && currentSkin.Weapon.IsCanAttack) {
+			counter.Start(Throw, Constant.TIME_DELAY_THROW);
+			ResetAnim();
+		}
+	}
+
+	public override void AddTarget(Character target) {
+		base.AddTarget(target);
+		if (!target.IsDead && !IsDead) {
+			target.SetMask(true);
+			if (counter.IsRunning && !isMoving) { //dang dung im thi co thang di vao
+				OnAttack();
+			}
+		}
+	}
+
+	protected override void SetSize(float size) {
+		base.SetSize(size);
+		CameraFollow.Ins.SetRateOffset((this.size - Constant.MIN_SIZE) / (Constant.MAX_SIZE - Constant.MIN_SIZE));
 	}
 
 	private void Update() {

@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2f4a03fa3a9e747a885f5e148ac318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 19
-  moveSpeed: 7
+  poolType: 13
+  moveSpeed: 10
   child: {fileID: 6199314037753272137}
 --- !u!1 &6051089041929721549
 GameObject:

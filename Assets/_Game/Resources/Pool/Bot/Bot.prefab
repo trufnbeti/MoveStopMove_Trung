@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82ce7aa555e40e4393d0c65d5f77a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  character: {fileID: 581746062494263969}
 --- !u!1 &5629339372345741831
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,10 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7dd0ac1ae9fbd439bcae7edcc03567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 0
-  indicatorPoint: {fileID: 0}
-  mask: {fileID: 0}
+  poolType: 1
+  indicatorPoint: {fileID: 9010258736875715065}
+  mask: {fileID: 5629339372345741831}
+  targetPoint: {x: 0, y: 0, z: 0}
   currentSkin: {fileID: 0}
-  agent: {fileID: 0}
-  targetIcon: {fileID: 0}
-  sphereRadius: 50
+  agent: {fileID: 7207008602563318425}

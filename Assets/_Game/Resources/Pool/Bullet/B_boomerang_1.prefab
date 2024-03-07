@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 17
-  moveSpeed: 7
+  moveSpeed: 10
   child: {fileID: 8863517940129454108}
 --- !u!1 &8675119224432101888
 GameObject:

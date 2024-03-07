@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 14
-  moveSpeed: 7
+  moveSpeed: 10

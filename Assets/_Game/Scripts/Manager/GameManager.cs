@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager> {
-    public Player player;
     private GameState _gameState;
     public void ChangeState(GameState state)
     {
@@ -33,6 +32,5 @@ public class GameManager : Singleton<GameManager> {
     private void Start() {
         ChangeState(GameState.GamePlay);
         CameraFollow.Ins.ChangeState(CameraState.GamePlay);
-        player.OnInit();
     }
 }

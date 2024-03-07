@@ -8,6 +8,7 @@ public class Bot : Character {
 	[SerializeField] private NavMeshAgent agent;
 	private IState<Bot> currentState;
 	private Vector3 destination;
+	public bool IsDestination => Vector3.Distance(TF.position, destination) - Mathf.Abs(TF.position.y - destination.y) < 0.1f;
 	private bool IsCanRunning => GameManager.Ins.IsState(GameState.GamePlay) || GameManager.Ins.IsState(GameState.Revive);
 
 	private CounterTime counter = new CounterTime();
@@ -38,7 +39,6 @@ public class Bot : Character {
 	public override void WearClothes() {
 		base.WearClothes();
 
-		//change random 
 		ChangeSkin(SkinType.Normal);
 		ChangeWeapon(Utilities.RandomEnumValue<WeaponType>());
 		ChangeHat(Utilities.RandomEnumValue<HatType>());

@@ -13,7 +13,7 @@ public class Character : GameUnit {
 	private List<Character> targets = new List<Character>();
 	protected Character target;
 	
-	private Vector3 targetPoint;
+	[SerializeField]private Vector3 targetPoint;
 
 	private int score;
 
@@ -61,12 +61,27 @@ public class Character : GameUnit {
 		mask.SetActive(isActive);
 	}
 	
+	public void SetScore(int score) {
+		this.score = score > 0 ? score : 0;
+		indicator.SetScore(this.score);
+		SetSize(1 + this.score * 0.1f);
+	}
+	
+	protected virtual void SetSize(float size) {
+		size = Mathf.Clamp(size, Constant.MIN_SIZE, Constant.MAX_SIZE);
+		this.size = size;
+		TF.localScale = size * Vector3.one;
+	}
+	
 	public void ResetAnim() {
 		animName = "";
 	}
 
-	public virtual void OnHit() {
-		
+	public void OnHit() {
+		if (!IsDead) {
+			IsDead = true;
+			OnDeath();
+		}
 	}
 
 	public virtual void OnAttack() {
@@ -74,13 +89,23 @@ public class Character : GameUnit {
 
 		if (IsCanAttack && target != null && !target.IsDead) {
 			targetPoint = target.TF.position;
+			targetPoint.y = TF.position.y;
 			TF.LookAt(targetPoint);
 			ChangeAnim(Anim.attack.ToString());
+			
 		}
+	}
+	
+	public void Throw() {
+		currentSkin.Weapon.Throw(this, targetPoint, size);
 	}
 
 	public virtual void OnStopMove() {
 		ChangeAnim(Anim.idle.ToString());
+	}
+	
+	public void AddScore(int amount = 1) {
+		SetScore(score + amount);
 	}
 	
 	public virtual void AddTarget(Character target) {
@@ -139,7 +164,7 @@ public class Character : GameUnit {
 
 				if (dis < distance) {
 					distance = dis;
-					target = targets[i];
+					res = targets[i];
 				}
 			}
 		}
