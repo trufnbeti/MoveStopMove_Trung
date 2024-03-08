@@ -17,7 +17,6 @@ public class LevelManager : Singleton<LevelManager> {
     #region Event
 
     private Action<object> actionPlay;
-    
 
     #endregion
 
@@ -61,7 +60,8 @@ public class LevelManager : Singleton<LevelManager> {
         for (int i = 0; i < bots.Count; ++i) {
             bots[i].ChangeState(new PatrolState());
         }
-        CameraFollow.Ins.ChangeState(CameraState.Gameplay);
+
+        SetTargetIndicatorAlpha(1f);
     }
 
     public Vector3 RandomPoint() {
@@ -117,6 +117,7 @@ public class LevelManager : Singleton<LevelManager> {
                 }
             }
         }
+        this.PostEvent(EventID.CharacterDeath);
     }
 
     private void SpawnBot(IState<Bot> state) {

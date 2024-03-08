@@ -45,7 +45,7 @@ public class Character : GameUnit {
 	
 	public virtual void OnDeath() {
 		ChangeAnim(Anim.die.ToString());
-		// LevelManager.Ins.CharecterDeath(this);
+		LevelManager.Ins.CharacterDeath(this);
 	}
 	
 	public virtual void WearClothes() {

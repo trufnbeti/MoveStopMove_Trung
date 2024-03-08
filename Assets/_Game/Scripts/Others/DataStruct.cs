@@ -5,7 +5,7 @@ public enum CameraState {
 }
 public enum EventID {
 	Play,
-	
+	CharacterDeath,
 }
 
 public enum GameState {

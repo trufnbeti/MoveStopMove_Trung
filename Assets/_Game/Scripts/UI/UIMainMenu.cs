@@ -20,5 +20,9 @@ public class UIMainMenu : UICanvas
 
     public void OnBtnPlayClick() {
         this.PostEvent(EventID.Play);
+        UIManager.Ins.OpenUI<UIGameplay>();
+        CameraFollow.Ins.ChangeState(CameraState.Gameplay);
+        Close(0.5f);
+        anim.Play(ANIM_CLOSE);
     }
 }
