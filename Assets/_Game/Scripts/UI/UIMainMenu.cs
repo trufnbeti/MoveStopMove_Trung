@@ -25,4 +25,9 @@ public class UIMainMenu : UICanvas
         Close(0.5f);
         anim.Play(ANIM_CLOSE);
     }
+
+    public void OnBtnWeaponClick() {
+        UIManager.Ins.OpenUI<UIWeapon>();
+        CloseDirectly();
+    }
 }

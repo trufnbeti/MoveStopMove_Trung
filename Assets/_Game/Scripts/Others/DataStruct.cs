@@ -3,6 +3,8 @@ public enum CameraState {
 	Gameplay,
 	Shop
 }
+
+
 public enum EventID {
 	Play,
 	CharacterDeath,
@@ -14,6 +16,12 @@ public enum GameState {
 	Setting = 3,
 	Finish = 4,
 	Revive = 5,
+}
+
+public enum StateButton {
+	Buy,
+	Equip,
+	Equipeed
 }
 
 public enum ParticleType {

@@ -5,14 +5,10 @@ using UnityEngine;
 
 public class Player : Character
 {
-	[SerializeField] private DynamicJoystick joystick;
 	[SerializeField] private float moveSpeed;
 	private CounterTime counter = new CounterTime();
 	private bool IsCanUpdate => GameManager.Ins.IsState(GameState.Gameplay);
 	private bool isMoving = false;
-	private float horizontal;
-	private float vertical;
-	private Vector3 direction;
 	
 	private SkinType skinType = SkinType.Normal;
 	private WeaponType weaponType = WeaponType.Candy_1;
@@ -81,10 +77,9 @@ public class Player : Character
 				counter.Cancel();
 			}
 
-			direction = (Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal).normalized;
-			if (Input.GetMouseButton(0) && Vector3.Distance(direction, Vector3.zero) > 0.1f) {
-				TF.position += direction * moveSpeed * Time.deltaTime;
-				TF.forward = direction;
+			if (Input.GetMouseButton(0) && Vector3.Distance(JoystickControl.direct, Vector3.zero) > 0.1f) {
+				TF.position += JoystickControl.direct * moveSpeed * Time.deltaTime;
+				TF.forward = JoystickControl.direct;
 				ChangeAnim(Anim.run.ToString());
 				isMoving = true;
 			} else {
