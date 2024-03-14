@@ -155,7 +155,7 @@ public class UserData : ScriptableObject
         vibrate =  PlayerPrefs.GetInt(PrefKey.VibrateIsOn.ToString(), 0) == 1;
 
         playerWeapon = GetEnumData(PrefKey.PlayerWeapon.ToString(), WeaponType.Hammer_1);
-        playerHat = GetEnumData(PrefKey.PlayerHat.ToString(), HatType.Arrow);
+        playerHat = GetEnumData(PrefKey.PlayerHat.ToString(), HatType.None);
         playerPant = GetEnumData(PrefKey.PlayerPant.ToString(), PantType.Pant_1);
         playerAccessory = GetEnumData(PrefKey.PlayerAccessory.ToString(), AccessoryType.None);
         playerSkin = GetEnumData(PrefKey.PlayerSkin.ToString(), SkinType.Normal);

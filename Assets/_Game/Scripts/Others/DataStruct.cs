@@ -19,24 +19,24 @@ public enum GameState {
 }
 
 public enum StateButton {
-	Buy,
-	Equip,
-	Equipped
+	Buy = 0,
+	Equip = 1,
+	Equipped = 2
 }
 
 public enum ShopType {
-	Hat,
-	Pant,
-	Accessory,
-	Skin,
-	Weapon
+	Hat = 0,
+	Pant = 1,
+	Accessory = 2,
+	Skin = 3,
+	Weapon = 4
 }
 
 public enum ItemState {
-	Buy,
-	Bought,
-	Equipped,
-	Selecting
+	Buy = 0,
+	Bought = 1,
+	Equipped = 2,
+	Selecting = 3
 }
 
 public enum ParticleType {
@@ -44,78 +44,78 @@ public enum ParticleType {
 }
 
 public enum PoolType {
-	None,
+	None = 0,
 
-	Bot,
+	Bot = 1,
 
-	Weapon_Hammer_1,
-	Weapon_Hammer_2,
-	Weapon_Hammer_3,
-	Weapon_Candy_1,
-	Weapon_Candy_2,
-	Weapon_Candy_3,
-	Weapon_Boomerang_1,
-	Weapon_Boomerang_2,
-	Weapon_Boomerang_3,
+	Weapon_Hammer_1 = 2,
+	Weapon_Hammer_2 = 3,
+	Weapon_Hammer_3 = 4,
+	Weapon_Candy_1 = 5,
+	Weapon_Candy_2 = 6,
+	Weapon_Candy_3 = 7,
+	Weapon_Boomerang_1 = 8,
+	Weapon_Boomerang_2 = 9,
+	Weapon_Boomerang_3 = 10,
 
-	Bullet_Hammer_1,
-	Bullet_Hammer_2,
-	Bullet_Hammer_3,
-	Bullet_Candy_1,
-	Bullet_Candy_2,
-	Bullet_Candy_3,
-	Bullet_Boomerang_1,
-	Bullet_Boomerang_2,
-	Bullet_Boomerang_3,
+	Bullet_Hammer_1 = 11,
+	Bullet_Hammer_2 = 12,
+	Bullet_Hammer_3 = 13,
+	Bullet_Candy_1 = 14,
+	Bullet_Candy_2 = 15,
+	Bullet_Candy_3 = 16,
+	Bullet_Boomerang_1 = 17,
+	Bullet_Boomerang_2 = 18,
+	Bullet_Boomerang_3 = 19,
 
-	Skin_Normal,
-	Skin_Devil,
-	Skin_Angle,
-	Skin_Witch,
-	Skin_Deadpool,
-	Skin_Thor,
+	Skin_Normal = 20,
+	Skin_Devil = 21,
+	Skin_Angle = 22,
+	Skin_Witch = 23,
+	Skin_Deadpool = 24,
+	Skin_Thor = 25,
 
-	Hat_Arrow,
-	Hat_Cap,
-	Hat_Cowboy,
-	Hat_Crown,
-	Hat_Ear,
-	Hat_StrawHat,
-	Hat_Headphone,
-	Hat_Horn,
-	Hat_Police,
+	Hat_Arrow = 26,
+	Hat_Cap = 27,
+	Hat_Cowboy = 28,
+	Hat_Crown = 29,
+	Hat_Ear = 30,
+	Hat_StrawHat = 31,
+	Hat_Headphone = 32,
+	Hat_Horn = 33,
+	Hat_Police = 34,
 
-	Acc_Book,
-	Acc_Captain,
-	Acc_Headphone,
-	Acc_Shield,
+	Acc_Book = 35,
+	Acc_Captain = 36,
+	Acc_Headphone = 37,
+	Acc_Shield = 38,
 
-	TargetIndicator,
+	TargetIndicator = 39,
 }
 
 public enum Anim {
-	run,
-	idle,
-	die,
-	dance,
-	attack,
-	win,
+	run = 0,
+	idle = 1,
+	die = 2,
+	dance = 3,
+	attack = 4,
+	win = 5,
 }
 
 public enum GameTag {
-	Character
+	Character = 0
 }
 
 public enum PantType {
-	Pant_1,
-	Pant_2,
-	Pant_3,
-	Pant_4,
-	Pant_5,
-	Pant_6,
-	Pant_7,
-	Pant_8,
-	Pant_9,
+	Pant_1 = 0,
+	Pant_2 = 1,
+	Pant_3 = 2,
+	Pant_4 = 3,
+	Pant_5 = 4,
+	Pant_6 = 5,
+	Pant_7 = 6,
+	Pant_8 = 7,
+	Pant_9 = 8,
 }
 
 public enum WeaponType {
@@ -173,17 +173,17 @@ public enum BulletType {
 }
 
 public enum PrefKey {
-	Level,
-	Coin,
-	SoundIsOn,
-	VibrateIsOn,
-	RemoveAds,
-	Tutorial,
-	PlayerWeapon,
-	PlayerHat,
-	PlayerPant,
-	PlayerAccessory,
-	PlayerSkin,
+	Level = 0,
+	Coin = 1,
+	SoundIsOn = 2,
+	VibrateIsOn = 3,
+	RemoveAds = 4,
+	Tutorial = 5,
+	PlayerWeapon = 6,
+	PlayerHat = 7,
+	PlayerPant = 8,
+	PlayerAccessory = 9,
+	PlayerSkin = 10,
 }
 
 

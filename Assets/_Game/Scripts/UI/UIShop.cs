@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIShop : UICanvas
-{
+public class UIShop : UICanvas {
+	private const string TYPE_NONE = "None";
 	[SerializeField] private ShopData shopData;
 	[SerializeField] private ShopItem shopItem;
 	[SerializeField] private Transform content;
@@ -118,7 +118,9 @@ public class UIShop : UICanvas
 
 			switch (shopType) {
 				case ShopType.Hat:
-					UserData.Ins.SetEnumData(UserData.Ins.playerHat.ToString(), ItemState.Bought);
+					if (UserData.Ins.playerHat.ToString() != TYPE_NONE) {
+						UserData.Ins.SetEnumData(UserData.Ins.playerHat.ToString(), ItemState.Bought);
+					}
 					UserData.Ins.SetEnumData(PrefKey.PlayerHat.ToString(), ref UserData.Ins.playerHat, (HatType)currentItem.Type);
 					break;
 				case ShopType.Pant:
@@ -126,7 +128,9 @@ public class UIShop : UICanvas
 					UserData.Ins.SetEnumData(PrefKey.PlayerPant.ToString(), ref UserData.Ins.playerPant, (PantType)currentItem.Type);
 					break;
 				case ShopType.Accessory:
-					UserData.Ins.SetEnumData(UserData.Ins.playerAccessory.ToString(), ItemState.Bought);
+					if (UserData.Ins.playerHat.ToString() != TYPE_NONE) {
+						UserData.Ins.SetEnumData(UserData.Ins.playerAccessory.ToString(), ItemState.Bought);
+					}
 					UserData.Ins.SetEnumData(PrefKey.PlayerAccessory.ToString(), ref UserData.Ins.playerAccessory, (AccessoryType)currentItem.Type);
 					break;
 				case ShopType.Skin:
@@ -138,9 +142,9 @@ public class UIShop : UICanvas
 
 		if (itemEquipped != null) {
 			itemEquipped.SetState(ItemState.Bought);
-			itemEquipped = currentItem;
 		}
 		
+		itemEquipped = currentItem;
 		buttonState.SetState(StateButton.Equipped);
 	}
 
