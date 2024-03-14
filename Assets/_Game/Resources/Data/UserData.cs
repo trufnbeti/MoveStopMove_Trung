@@ -37,13 +37,6 @@ public class UserData : ScriptableObject
         }
     }
 
-    public const string Keys_Weapon_Data = "WeaponDatas";
-    public const string Keys_Hat_Data = "HatDatas";
-    public const string Keys_Pant_Data = "PantDatas";
-    public const string Keys_Accessory_Data = "AccessoryDatas";
-    public const string Keys_Skin_Data = "SkinDatas";
-
-
     public int level = 0;
     public int coin = 0;
 

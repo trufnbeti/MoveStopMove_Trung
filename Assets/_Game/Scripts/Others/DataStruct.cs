@@ -21,7 +21,22 @@ public enum GameState {
 public enum StateButton {
 	Buy,
 	Equip,
-	Equipeed
+	Equipped
+}
+
+public enum ShopType {
+	Hat,
+	Pant,
+	Accessory,
+	Skin,
+	Weapon
+}
+
+public enum ItemState {
+	Buy,
+	Bought,
+	Equipped,
+	Selecting
 }
 
 public enum ParticleType {

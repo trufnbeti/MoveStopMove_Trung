@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5703299409039722701}
   - component: {fileID: 5703299409039722698}
   m_Layer: 0
-  m_Name: Angle
+  m_Name: Angel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   rightHand: {fileID: 2047186067335437956}
   leftHand: {fileID: 8930202460840693087}
   pant: {fileID: 3999701320380424564}
-  isCanChange: 1
+  isCanChange: 0
   anim: {fileID: 7266144132872156317}
 --- !u!1001 &347375667465375194
 PrefabInstance:

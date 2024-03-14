@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMainMenu : UICanvas
-{
+public class UIMainMenu : UICanvas {
     private const string ANIM_OPEN = "Open";
     private const string ANIM_CLOSE = "Close";
     [SerializeField] Text playerCoinTxt;
     [SerializeField] Animation anim;
+
     public override void Open() {
         base.Open();
         GameManager.Ins.ChangeState(GameState.MainMenu);
@@ -30,4 +30,10 @@ public class UIMainMenu : UICanvas
         UIManager.Ins.OpenUI<UIWeapon>();
         CloseDirectly();
     }
+
+    public void OnBtnShopClick() {
+        UIManager.Ins.OpenUI<UIShop>();
+        CloseDirectly();
+    }
+
 }

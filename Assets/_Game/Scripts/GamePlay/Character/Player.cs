@@ -46,6 +46,31 @@ public class Player : Character
 		base.RemoveTarget(target);
 		target.SetMask(false);
 	}
+
+	public void TryCloth(ShopType shopType, Enum type) {
+		switch (shopType) {
+			case ShopType.Hat:
+				currentSkin.DespawnHat();
+				ChangeHat((HatType)type);
+				break;
+			case ShopType.Weapon:
+				currentSkin.DespawnWeapon();
+				ChangeWeapon((WeaponType)type);
+				break;
+			case ShopType.Skin:
+				TakeOffClothes();
+				skinType = (SkinType)type;
+				WearClothes();
+				break;
+			case ShopType.Accessory:
+				currentSkin.DespawnAccessory();
+				ChangeAccessory((AccessoryType)type);
+				break;
+			case ShopType.Pant:
+				ChangePant((PantType)type);
+				break;
+		}
+	}
 	#endregion
 
 	public override void OnAttack() {

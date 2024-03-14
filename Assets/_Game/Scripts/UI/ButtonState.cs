@@ -6,12 +6,15 @@ public class ButtonState : MonoBehaviour {
 	[SerializeField] private GameObject[] btnObjs;
 
 	public void SetState(StateButton state) {
-		for (int i = 0; i < btnObjs.Length; i++)
-		{
-			btnObjs[i].SetActive(false);
-		}
+		DeactiveBtn();
 
 		btnObjs[(int)state].SetActive(true);
+	}
+
+	public void DeactiveBtn() {
+		for (int i = 0; i < btnObjs.Length; i++) {
+			btnObjs[i].SetActive(false);
+		}
 	}
 
 }
