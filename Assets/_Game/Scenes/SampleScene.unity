@@ -1050,6 +1050,68 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1822638874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822638875}
+  - component: {fileID: 1822638876}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1822638875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822638874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2006695985}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1822638876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822638874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465671e35622fdf4cb3cd25a50cabf12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoaded: 0
+  playerData:
+    isNew: 1
+    isMusic: 1
+    isSound: 1
+    isVibrate: 1
+    coin: 20000
+    level: 0
+    idSkin: 0
+    idHat: 0
+    idPant: 0
+    idWeapon: 0
+    idAccessory: 0
+    skinStatus: 020000000000000000000000000000000000000000000000
+    hatStatus: 000000000000000000000000000000000000000000000000000000000000000000000000
+    pantStatus: 020000000000000000000000000000000000000000000000000000000000000000000000
+    weaponStatus: 020000000000000000000000000000000000000000000000000000000000000000000000
+    accessoryStatus: 00000000000000000000000000000000
 --- !u!1 &1998236618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,6 +1246,7 @@ Transform:
   - {fileID: 1553348321}
   - {fileID: 805026906}
   - {fileID: 1675033451}
+  - {fileID: 1822638875}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1241,6 +1304,7 @@ MonoBehaviour:
   targetPoint: {x: 0, y: 0, z: 0}
   currentSkin: {fileID: 0}
   moveSpeed: 5
+  skinType: 20
 --- !u!136 &2082722319
 CapsuleCollider:
   m_ObjectHideFlags: 0

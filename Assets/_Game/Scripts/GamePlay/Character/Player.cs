@@ -10,7 +10,7 @@ public class Player : Character
 	private bool IsCanUpdate => GameManager.Ins.IsState(GameState.Gameplay);
 	private bool isMoving = false;
 	
-	private SkinType skinType = SkinType.Normal;
+	[SerializeField]private SkinType skinType = SkinType.Normal;
 	private WeaponType weaponType = WeaponType.Candy_1;
 	private HatType hatType = HatType.Cap;
 	private AccessoryType accessoryType = AccessoryType.Headphone;
@@ -24,11 +24,11 @@ public class Player : Character
 	}
 	
 	public void OnTakeClothsData() {
-		skinType = UserData.Ins.playerSkin;
-		weaponType = UserData.Ins.playerWeapon;
-		hatType = UserData.Ins.playerHat;
-		accessoryType = UserData.Ins.playerAccessory;
-		pantType = UserData.Ins.playerPant;
+		skinType = DataManager.Ins.GetEnumData<SkinType>(DataManager.Ins.IdSkin);
+		weaponType = DataManager.Ins.GetEnumData<WeaponType>(DataManager.Ins.IdWeapon);
+		hatType = DataManager.Ins.GetEnumData<HatType>(DataManager.Ins.IdHat);
+		accessoryType = DataManager.Ins.GetEnumData<AccessoryType>(DataManager.Ins.IdAccessory);
+		pantType = DataManager.Ins.GetEnumData<PantType>(DataManager.Ins.IdPant);
 	}
 
 	#region Skin

@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "ShopData", menuName = "ScriptableObjects/ShopData", order = 1)]
 public class ShopData : ScriptableObject {
@@ -24,11 +24,12 @@ public class ShopItemDatas<T> where T: System.Enum {
 }
 
 [System.Serializable]
-public class ShopItemData <T> : ShopItemData where T : System.Enum {
+public class ShopItemData <T> : ShopItemData where T : Enum {
 	public T type;
 }
 
 public class ShopItemData {
 	public Sprite icon;
 	public int cost;
+	public int id;
 }

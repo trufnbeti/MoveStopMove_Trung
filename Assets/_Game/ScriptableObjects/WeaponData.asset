@@ -16,27 +16,36 @@ MonoBehaviour:
   - name: Hammer
     type: 2
     cost: 100
+    id: 0
   - name: Axe
     type: 3
     cost: 150
+    id: 1
   - name: X Trex
     type: 4
     cost: 200
+    id: 2
   - name: Lolipop
     type: 5
     cost: 200
+    id: 3
   - name: Icream
     type: 6
     cost: 150
+    id: 4
   - name: Candy
     type: 7
     cost: 170
+    id: 5
   - name: Boomerang
     type: 8
     cost: 180
+    id: 6
   - name: Zed
     type: 9
     cost: 190
+    id: 7
   - name: Uzi
     type: 10
     cost: 250
+    id: 8

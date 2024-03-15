@@ -17,8 +17,8 @@ public class UIWeapon : UICanvas
 
     public override void Setup() {
         base.Setup();
-        ChangeWeapon(UserData.Ins.playerWeapon);
-        playerCoinTxt.text = UserData.Ins.coin.ToString();
+        ChangeWeapon(DataManager.Ins.GetEnumData<WeaponType>(DataManager.Ins.IdWeapon));
+        playerCoinTxt.text = DataManager.Ins.Coin.ToString();
     }
 
     public override void CloseDirectly() {
@@ -51,11 +51,14 @@ public class UIWeapon : UICanvas
         currentWeapon = SimplePool.Spawn<Weapon>((PoolType)weaponType, Vector3.zero, Quaternion.identity, weaponPoint);
 
         //check data dong
-        StateButton state = (StateButton)UserData.Ins.GetDataState(weaponType.ToString(), 0);
-        buttonState.SetState(state);
+        int stateWeapon = DataManager.Ins.GetStateData(weaponType);
+        if (stateWeapon != -1) {
+            StateButton state = (StateButton)stateWeapon;
+            buttonState.SetState(state);
 
-        WeaponItem item = weaponData.GetWeaponItem(weaponType);
-        nameTxt.text = item.name;
-        coinTxt.text = item.cost.ToString();
+            WeaponItem item = weaponData.GetWeaponItem(weaponType);
+            nameTxt.text = item.name;
+            coinTxt.text = item.cost.ToString();
+        }
     }
 }

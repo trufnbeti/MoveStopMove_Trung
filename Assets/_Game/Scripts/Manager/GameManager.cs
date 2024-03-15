@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager> {
             Screen.SetResolution(Mathf.RoundToInt(ratio * (float)maxScreenHeight), maxScreenHeight, true);
         }
         
-        UserData.Ins.OnInitData();
+        // UserData.Ins.OnInitData();
     }
 
     private void Start() {

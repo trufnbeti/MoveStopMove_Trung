@@ -14,7 +14,7 @@ public class UIMainMenu : UICanvas {
         GameManager.Ins.ChangeState(GameState.MainMenu);
         CameraFollow.Ins.ChangeState(CameraState.MainMenu);
 
-        playerCoinTxt.text = UserData.Ins.coin.ToString();
+        playerCoinTxt.text = DataManager.Ins.Coin.ToString();
         anim.Play(ANIM_OPEN);
     }
 

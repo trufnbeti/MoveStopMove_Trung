@@ -119,60 +119,61 @@ public enum PantType {
 }
 
 public enum WeaponType {
-	Hammer_1 = PoolType.Weapon_Hammer_1,
-	Hammer_2 = PoolType.Weapon_Hammer_2,
-	Hammer_3 = PoolType.Weapon_Hammer_3,
-	Candy_1 = PoolType.Weapon_Candy_1,
-	Candy_2 = PoolType.Weapon_Candy_2,
-	Candy_3 = PoolType.Weapon_Candy_3,
-	Boomerang_1 = PoolType.Weapon_Boomerang_1,
-	Boomerang_2 = PoolType.Weapon_Boomerang_2,
-	Boomerang_3 = PoolType.Weapon_Boomerang_3,
+	Hammer_1 = 0,
+	Hammer_2 = 1,
+	Hammer_3 = 2,
+	Candy_1 = 3,
+	Candy_2 = 4,
+	Candy_3 = 5,
+	Boomerang_1 = 6,
+	Boomerang_2 = 7,
+	Boomerang_3 = 8,
 }
 
 public enum AccessoryType {
 	None = 0,
-	Book = PoolType.Acc_Book,
-	CaptainShield = PoolType.Acc_Captain,
-	Headphone = PoolType.Acc_Headphone,
-	Shield = PoolType.Acc_Shield,
+	Book = 1,
+	CaptainShield = 2,
+	Headphone = 3,
+	Shield = 4,
 }
 
 public enum HatType {
 	None = 0,
-	Arrow = PoolType.Hat_Arrow,
-	Cap = PoolType.Hat_Cap,
-	Cowboy = PoolType.Hat_Cowboy,
-	Crown = PoolType.Hat_Crown,
-	Ear = PoolType.Hat_Ear,
-	StrawHat = PoolType.Hat_StrawHat,
-	Headphone = PoolType.Hat_Headphone,
-	Horn = PoolType.Hat_Horn,
-	Police = PoolType.Hat_Police,
+	Arrow = 1,
+	Cap = 2,
+	Cowboy = 3,
+	Crown = 4,
+	Ear = 5,
+	StrawHat = 6,
+	Headphone = 7,
+	Horn = 8,
+	Police = 9,
 }
 
 public enum SkinType {
-	Normal = PoolType.Skin_Normal,
-	Devil = PoolType.Skin_Devil,
-	Angle = PoolType.Skin_Angle,
-	Witch = PoolType.Skin_Witch,
-	Deadpool = PoolType.Skin_Deadpool,
-	Thor = PoolType.Skin_Thor,
+	Normal = 0,
+	Devil = 1,
+	Angle = 2,
+	Witch = 3,
+	Deadpool = 4,
+	Thor = 5,
 }
 
 public enum BulletType {
-	Hammer_1 = PoolType.Bullet_Hammer_1,
-	Hammer_2 = PoolType.Bullet_Hammer_2,
-	Hammer_3 = PoolType.Bullet_Hammer_3,
-	Candy_1 = PoolType.Bullet_Candy_1,
-	Candy_2 = PoolType.Bullet_Candy_2,
-	Candy_3 = PoolType.Bullet_Candy_3,
-	Boomerang_1 = PoolType.Bullet_Boomerang_1,
-	Boomerang_2 = PoolType.Bullet_Boomerang_2,
-	Boomerang_3 = PoolType.Bullet_Boomerang_3,
+	Hammer_1 = 0,
+	Hammer_2 = 1,
+	Hammer_3 = 2,
+	Candy_1 = 3,
+	Candy_2 = 4,
+	Candy_3 = 5,
+	Boomerang_1 = 6,
+	Boomerang_2 = 7,
+	Boomerang_3 = 8
 }
 
 public enum PrefKey {
+	PlayerData,
 	Level = 0,
 	Coin = 1,
 	SoundIsOn = 2,
