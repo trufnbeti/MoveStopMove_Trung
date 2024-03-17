@@ -615,7 +615,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -240, y: -150}
+  m_AnchoredPosition: {x: -240, y: -100}
   m_SizeDelta: {x: 394.67163, y: 112.70001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4461448900908611961
@@ -1145,6 +1145,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8378118511706920640}
     m_Modifications:
+    - target: {fileID: 78675070321042273, guid: 19f35883b770661408ae12ac03483463, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1131723773337010523}
+    - target: {fileID: 78675070321042273, guid: 19f35883b770661408ae12ac03483463, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnBtnBuyClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 78675070321042273, guid: 19f35883b770661408ae12ac03483463, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIWeapon, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 78675070321042273, guid: 19f35883b770661408ae12ac03483463, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1311482889573742109, guid: 19f35883b770661408ae12ac03483463, type: 3}
       propertyPath: m_Name
       value: ButtonState

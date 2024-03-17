@@ -13,12 +13,13 @@ public class UIWeapon : UICanvas
     [SerializeField] private Text playerCoinTxt;
     
     private Weapon currentWeapon;
+    private WeaponItem weaponItem;
     private int currentIdx;
-    private WeaponType weaponType;
 
     public override void Setup() {
         base.Setup();
-        ChangeWeapon(DataManager.Ins.IdWeapon);
+        currentIdx = DataManager.Ins.IdWeapon;
+        ChangeWeapon(currentIdx);
         playerCoinTxt.text = DataManager.Ins.Coin.ToString();
     }
 
@@ -40,7 +41,12 @@ public class UIWeapon : UICanvas
     }
 
     public void OnBtnBuyClick() {
-        // if (UserData.Ins.coin >= weaponIte)
+        if (DataManager.Ins.Coin >= weaponItem.cost) {
+            DataManager.Ins.Coin -= weaponItem.cost;
+            DataManager.Ins.SetStateData(currentIdx, 1, ShopType.Weapon);
+            LoadBtn();
+        }
+        //TODO làm nốt equip weapon + fix rotate uzi
     }
 
     public void ChangeWeapon(int index) {
@@ -56,12 +62,15 @@ public class UIWeapon : UICanvas
         currentWeapon.transform.localScale = Vector3.one;
         
         //check data dong
-        int stateWeapon = DataManager.Ins.GetStateData(index, typeof(WeaponType));
-        StateButton state = (StateButton)stateWeapon;
-        buttonState.SetState(state);
-        WeaponItem item = weaponData.GetWeaponItem(index);
-        nameTxt.text = item.name;
-        coinTxt.text = item.cost.ToString();
+        LoadBtn();
         
+    }
+
+    private void LoadBtn() {
+        int stateWeapon = DataManager.Ins.GetStateData(currentIdx, ShopType.Weapon);
+        buttonState.SetState((StateButton)stateWeapon);
+        weaponItem = weaponData.GetWeaponItem(currentIdx);
+        nameTxt.text = weaponItem.name;
+        coinTxt.text = weaponItem.cost.ToString();
     }
 }

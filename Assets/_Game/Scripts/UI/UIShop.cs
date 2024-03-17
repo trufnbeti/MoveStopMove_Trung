@@ -15,13 +15,12 @@ public class UIShop : UICanvas {
 
 	private MiniPool<ShopItem> miniPool = new MiniPool<ShopItem>();
 
-	[SerializeField]private ShopItem currentItem;
+	private ShopItem currentItem;
 	private ShopBar currentBar;
-	[SerializeField]private ShopItem itemEquipped;
+	private ShopItem itemEquipped;
 	private int currentIdx = 0;
 
 	public ShopType shopType => currentBar.Type;
-	// public ItemState GetState(Enum t) => (ItemState)DataManager.Ins.GetStateData<>(t);
 
 	private void Awake() {
 		miniPool.OnInit(shopItem, 0, content);
@@ -51,6 +50,7 @@ public class UIShop : UICanvas {
 	public void SelectBar(ShopBar shopBar) {
 		if (currentBar != null) {
 			currentBar.Active(false);
+			currentItem = null;
 		}
 		
 		currentBar = shopBar;
@@ -79,7 +79,7 @@ public class UIShop : UICanvas {
 
 	public void SelectItem(ShopItem item) {
 		if (currentItem != null) {
-			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(currentIdx, shopType.GetType()); //TODO truyền shopType vào xong so sánh với từng phần tử trong shopType
+			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(currentIdx, shopType);
 			currentItem.SetState(itemState);
 		}
 
@@ -109,20 +109,7 @@ public class UIShop : UICanvas {
 	public void OnBtnBuyClick() {
 		if (DataManager.Ins.Coin >= currentItem.data.cost) {
 			DataManager.Ins.Coin -= currentItem.data.cost;
-			switch (shopType) {
-				case ShopType.Hat:
-					DataManager.Ins.HatStatus[currentItem.data.id] = 1;
-					break;
-				case ShopType.Accessory:
-					DataManager.Ins.AccessoryStatus[currentItem.data.id] = 1;
-					break;
-				case ShopType.Pant:
-					DataManager.Ins.PantStatus[currentItem.data.id] = 1;
-					break;
-				case ShopType.Skin:
-					DataManager.Ins.SkinStatus[currentItem.data.id] = 1;
-					break;
-			}
+			DataManager.Ins.SetStateData(currentIdx, 1, shopType);
 			
 			SelectItem(currentItem);
 
@@ -132,30 +119,24 @@ public class UIShop : UICanvas {
 
 	public void OnBtnEquipClick() {
 		if (currentItem != null) {
-			UserData.Ins.SetEnumData(currentItem.itemType.ToString(), ItemState.Equipped);
-
+			int equippedIdx = itemEquipped ? Convert.ToInt32(itemEquipped.itemType) : 0;
+			DataManager.Ins.SetStateData(currentIdx, 2, shopType);
+			DataManager.Ins.SetStateData(equippedIdx, 1, shopType);
+			
 			switch (shopType) {
 				case ShopType.Hat:
-					DataManager.Ins.HatStatus[DataManager.Ins.IdHat] = 1;
 					DataManager.Ins.HatStatus[0] = 0;
-					DataManager.Ins.HatStatus[currentItem.data.id] = 2;
-					DataManager.Ins.IdHat = currentItem.data.id;
+					DataManager.Ins.IdHat = currentIdx;
 					break;
 				case ShopType.Pant:
-					DataManager.Ins.PantStatus[DataManager.Ins.IdPant] = 1;
-					DataManager.Ins.PantStatus[currentItem.data.id] = 2;
-					DataManager.Ins.IdPant = currentItem.data.id;
+					DataManager.Ins.IdPant = currentIdx;
 					break;
 				case ShopType.Accessory:
-					DataManager.Ins.AccessoryStatus[DataManager.Ins.IdAccessory] = 1;
 					DataManager.Ins.AccessoryStatus[0] = 0;
-					DataManager.Ins.AccessoryStatus[currentItem.data.id] = 2;
-					DataManager.Ins.IdAccessory = currentItem.data.id;
+					DataManager.Ins.IdAccessory = currentIdx;
 					break;
 				case ShopType.Skin:
-					DataManager.Ins.SkinStatus[DataManager.Ins.IdSkin] = 1;
-					DataManager.Ins.SkinStatus[currentItem.data.id] = 2;
-					DataManager.Ins.IdSkin = currentItem.data.id;
+					DataManager.Ins.IdSkin = currentIdx;
 					break;
 			}
 		}
@@ -173,7 +154,7 @@ public class UIShop : UICanvas {
 	private void InitShopItems<T>(List<ShopItemData<T>> itemDatas) where T : Enum {
 		for (int i = 0; i < itemDatas.Count; ++i) {
 			int id = Convert.ToInt32(itemDatas[i].type);
-			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(id, shopType.GetType());
+			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(id, shopType);
 			ShopItem item = miniPool.Spawn();
 			item.SetData(itemDatas[i], this);
 			item.SetState(itemState);

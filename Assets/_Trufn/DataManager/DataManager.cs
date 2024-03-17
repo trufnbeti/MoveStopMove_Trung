@@ -173,27 +173,44 @@ public class DataManager : Singleton<DataManager>
         get => playerData.accessoryStatus;
     }
 
-    public T GetEnumData<T>(int value) where T : Enum { //truyen index
-        return (T)Enum.ToObject(typeof(T), value);
+    public void SetStateData(int index, int value, ShopType type) {
+        switch (type) {
+            case ShopType.Skin:
+                SkinStatus[index] = value;
+                break;
+            case ShopType.Weapon:
+                WeaponStatus[index] = value;
+                break;
+            case ShopType.Accessory:
+                AccessoryStatus[index] = value;
+                break;
+            case ShopType.Hat:
+                HatStatus[index] = value;
+                break;
+            case ShopType.Pant:
+                PantStatus[index] = value;
+                break;
+        }
+        
+        SaveData();
     }
 
-    public int GetStateData(int index, Type type) {
+    public int GetStateData(int index, ShopType type) {
         int res = 0;
-        Debug.Log(type.ToString());
-        switch (type.ToString()) {
-            case SKIN_TYPE:
+        switch (type) {
+            case ShopType.Skin:
                 res = SkinStatus[index];
                 break;
-            case WEAPON_TYPE:
+            case ShopType.Weapon:
                 res = WeaponStatus[index];
                 break;
-            case ACC_TYPE:
+            case ShopType.Accessory:
                 res = AccessoryStatus[index];
                 break;
-            case HAT_TYPE:
+            case ShopType.Hat:
                 res = HatStatus[index];
                 break;
-            case PANT_TYPE:
+            case ShopType.Pant:
                 res = PantStatus[index];
                 break;
         }
