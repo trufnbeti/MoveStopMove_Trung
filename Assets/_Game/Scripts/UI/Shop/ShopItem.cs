@@ -13,7 +13,7 @@ public class ShopItem : MonoBehaviour
 	
 	public ItemState state;
 
-	public Enum Type;
+	public Enum itemType;
 	public ShopItemData data;
 	private UIShop shop;
 
@@ -22,7 +22,7 @@ public class ShopItem : MonoBehaviour
 	}
 	
 	public void SetData<T>(ShopItemData<T> itemData, UIShop shop) where T : Enum {
-		Type = itemData.type;
+		itemType = itemData.type;
 		data = itemData;
 		this.shop = shop;
 		icon.sprite = itemData.icon;

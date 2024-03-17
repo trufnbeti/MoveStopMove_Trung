@@ -54,7 +54,7 @@ public class Character : GameUnit {
 	
 	public virtual void TakeOffClothes() {
 		currentSkin?.OnDespawn();
-		SimplePool.Despawn(currentSkin);
+		Destroy(currentSkin.gameObject);
 	}
 	
 	public void SetMask(bool isActive) {
@@ -126,31 +126,30 @@ public class Character : GameUnit {
 	}
 
 	#region Skin
-	protected void ChangeSkin(SkinType skinType) {
-		currentSkin = SimplePool.Spawn<Skin>((PoolType)skinType, TF);
+	protected void ChangeSkin(int index) {
+		currentSkin = Instantiate(SkinManager.Ins.skinData.GetPrefab(index), TF);
 	}
 
-	protected void ChangeWeapon(WeaponType weaponType)
+	protected void ChangeWeapon(int index)
 	{
-		currentSkin.ChangeWeapon(weaponType);
+		currentSkin.ChangeWeapon(index);
 	}
 	
-	protected void ChangeAccessory(AccessoryType accessoryType)
+	protected void ChangeAccessory(int index)
 	{
-		currentSkin.ChangeAccessory(accessoryType);
+		currentSkin.ChangeAccessory(index);
 	}
 
-	protected void ChangeHat(HatType hatType)
+	protected void ChangeHat(int index)
 	{
-		currentSkin.ChangeHat(hatType);
+		currentSkin.ChangeHat(index);
 	}
 
-	protected void ChangePant(PantType pantType)
+	protected void ChangePant(int index)
 	{
-		currentSkin.ChangePant(pantType);
+		currentSkin.ChangePant(index);
 	}
 	
-
 	#endregion
 	
 

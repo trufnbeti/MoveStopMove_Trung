@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEditor;
 using UnityEngine.Serialization;
 
 public class DataManager : Singleton<DataManager>
@@ -34,7 +35,7 @@ public class DataManager : Singleton<DataManager>
 
     public void LoadData() {
         // string d = PlayerPrefs.GetString(PLAYER_DATA, "");
-        string d = PlayerPrefs.GetString(PrefKey.PlayerData.ToString(), "");
+        string d = JsonUtility.ToJson(Pref.PlayerData);
         if (d != "") {
             playerData = JsonUtility.FromJson<PlayerData>(d);
         }
@@ -81,15 +82,7 @@ public class DataManager : Singleton<DataManager>
             playerData.idHat = value;
             SaveData();
         }
-        get {
-            for (int i = 1; i < HatStatus.Length; ++i) {
-                if (HatStatus[i] == 2) {
-                    return i;
-                }
-            }
-
-            return 0;
-        }
+        get => playerData.idHat;
     }
     
     public int IdPant {
@@ -113,15 +106,7 @@ public class DataManager : Singleton<DataManager>
             playerData.idAccessory = value;
             SaveData();
         }
-        get {
-            for (int i = 1; i < AccessoryStatus.Length; ++i) {
-                if (AccessoryStatus[i] == 2) {
-                    return i;
-                }
-            }
-
-            return 0;
-        }
+        get => playerData.idAccessory;
     }
     
     public bool IsSound {
@@ -189,29 +174,27 @@ public class DataManager : Singleton<DataManager>
     }
 
     public T GetEnumData<T>(int value) where T : Enum { //truyen index
-        List<T> enumList = Enum.GetValues(typeof(T)).Cast<T>().ToList();
-        
-        return enumList[value];
+        return (T)Enum.ToObject(typeof(T), value);
     }
 
-    public int GetStateData<T>(T value) where T : Enum {
+    public int GetStateData(int index, Type type) {
         int res = 0;
-        Debug.Log(typeof(T).ToString());
-        switch (typeof(T).ToString()) {
+        Debug.Log(type.ToString());
+        switch (type.ToString()) {
             case SKIN_TYPE:
-                res = FindState(SkinStatus, value);
+                res = SkinStatus[index];
                 break;
             case WEAPON_TYPE:
-                res = FindState(WeaponStatus, value);
+                res = WeaponStatus[index];
                 break;
             case ACC_TYPE:
-                res = FindState(AccessoryStatus, value);
+                res = AccessoryStatus[index];
                 break;
             case HAT_TYPE:
-                res = FindState(HatStatus, value);
+                res = HatStatus[index];
                 break;
             case PANT_TYPE:
-                res = FindState(PantStatus, value);
+                res = PantStatus[index];
                 break;
         }
 
@@ -227,6 +210,11 @@ public class DataManager : Singleton<DataManager>
         playerData = new PlayerData();
         SaveData();
     }
+    
+    public void LoadDataTest() {
+        isLoaded = true;
+        SaveData();
+    }
 
     #endif
 
@@ -235,21 +223,37 @@ public class DataManager : Singleton<DataManager>
         Pref.PlayerData = playerData;
     }
 
-    private int FindState<T>(int[] arr, T value) where T : Enum{
-        for (int i = 0; i < arr.Length; ++i) {
-            if (GetEnumData<T>(i).ToString() == value.ToString()) {
-                return arr[i];
-            }
-        }
+}
 
-        return 0;
+#if UNITY_EDITOR
+[CustomEditor(typeof(DataManager))]
+public class DataManagerEditor : Editor
+{
+    private DataManager dataManager;
+        
+    private void OnEnable() {
+        dataManager = (DataManager) target;
+    }
+        
+    public override void OnInspectorGUI() {
+        base.OnInspectorGUI();
+            
+        if (GUILayout.Button("Clear Data")) {
+            dataManager.Reset();
+            EditorUtility.SetDirty(dataManager);
+        }
+            
+        if (GUILayout.Button("Load Data Test")) {
+            dataManager.LoadDataTest();
+            EditorUtility.SetDirty(dataManager);
+        }
     }
 }
+#endif
 
 
 [System.Serializable]
-public class PlayerData
-{
+public class PlayerData {
     [Header("--------- Game Setting ---------")]
     public bool isNew = true;
     public bool isMusic = true;

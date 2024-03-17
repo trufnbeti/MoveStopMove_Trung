@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3742317e7556147b9fe4a6fb2fa48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 16
+  poolType: 7
   moveSpeed: 10
 --- !u!1 &8032482583914748609
 GameObject:

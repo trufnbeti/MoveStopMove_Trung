@@ -131,4 +131,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 4
   child: {fileID: 4753997997748990250}
-  bulletType: 13
+  bulletType: 4

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 5
   child: {fileID: 6373832990764767362}
-  bulletType: 14
+  bulletType: 5
 --- !u!1 &6373832990764767362
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,52 +13,55 @@ public class UIWeapon : UICanvas
     [SerializeField] private Text playerCoinTxt;
     
     private Weapon currentWeapon;
+    private int currentIdx;
     private WeaponType weaponType;
 
     public override void Setup() {
         base.Setup();
-        ChangeWeapon(DataManager.Ins.GetEnumData<WeaponType>(DataManager.Ins.IdWeapon));
+        ChangeWeapon(DataManager.Ins.IdWeapon);
         playerCoinTxt.text = DataManager.Ins.Coin.ToString();
     }
 
     public override void CloseDirectly() {
         base.CloseDirectly();
         if (currentWeapon != null) {
-            SimplePool.Despawn(currentWeapon);
+            Destroy(currentWeapon.gameObject);
             currentWeapon = null;
         }
         UIManager.Ins.OpenUI<UIMainMenu>();
     }
 
     public void OnBtnNextClick() {
-        ChangeWeapon(weaponData.NextType(weaponType));
+        ChangeWeapon(weaponData.NextWeaponIdx(currentIdx));
     }
 
     public void OnBtnPrevClick() {
-        ChangeWeapon(weaponData.PrevType(weaponType));
+        ChangeWeapon(weaponData.PrevWeaponIdx(currentIdx));
     }
 
     public void OnBtnBuyClick() {
         // if (UserData.Ins.coin >= weaponIte)
     }
 
-    public void ChangeWeapon(WeaponType weaponType) {
-        this.weaponType = weaponType;
+    public void ChangeWeapon(int index) {
+        currentIdx = index;
 
         if (currentWeapon != null ) {
-            SimplePool.Despawn(currentWeapon);
+            Destroy(currentWeapon.gameObject);
         }
-        currentWeapon = SimplePool.Spawn<Weapon>((PoolType)weaponType, Vector3.zero, Quaternion.identity, weaponPoint);
 
+        currentWeapon = Instantiate(SkinManager.Ins.weaponData.GetWeapon(index), weaponPoint);
+        currentWeapon.transform.localPosition = Vector3.zero;
+        currentWeapon.transform.localRotation = Quaternion.identity;
+        currentWeapon.transform.localScale = Vector3.one;
+        
         //check data dong
-        int stateWeapon = DataManager.Ins.GetStateData(weaponType);
-        if (stateWeapon != -1) {
-            StateButton state = (StateButton)stateWeapon;
-            buttonState.SetState(state);
-
-            WeaponItem item = weaponData.GetWeaponItem(weaponType);
-            nameTxt.text = item.name;
-            coinTxt.text = item.cost.ToString();
-        }
+        int stateWeapon = DataManager.Ins.GetStateData(index, typeof(WeaponType));
+        StateButton state = (StateButton)stateWeapon;
+        buttonState.SetState(state);
+        WeaponItem item = weaponData.GetWeaponItem(index);
+        nameTxt.text = item.name;
+        coinTxt.text = item.cost.ToString();
+        
     }
 }

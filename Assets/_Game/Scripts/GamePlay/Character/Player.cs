@@ -10,11 +10,11 @@ public class Player : Character
 	private bool IsCanUpdate => GameManager.Ins.IsState(GameState.Gameplay);
 	private bool isMoving = false;
 	
-	[SerializeField]private SkinType skinType = SkinType.Normal;
-	private WeaponType weaponType = WeaponType.Candy_1;
-	private HatType hatType = HatType.Cap;
-	private AccessoryType accessoryType = AccessoryType.Headphone;
-	private PantType pantType = PantType.Pant_1;
+	[SerializeField]private int skinType = 0;
+	private int weaponType = 0;
+	private int hatType = 0;
+	private int accessoryType = 0;
+	private int pantType = 0;
 
 	public override void OnInit() {
 		OnTakeClothsData();
@@ -24,11 +24,11 @@ public class Player : Character
 	}
 	
 	public void OnTakeClothsData() {
-		skinType = DataManager.Ins.GetEnumData<SkinType>(DataManager.Ins.IdSkin);
-		weaponType = DataManager.Ins.GetEnumData<WeaponType>(DataManager.Ins.IdWeapon);
-		hatType = DataManager.Ins.GetEnumData<HatType>(DataManager.Ins.IdHat);
-		accessoryType = DataManager.Ins.GetEnumData<AccessoryType>(DataManager.Ins.IdAccessory);
-		pantType = DataManager.Ins.GetEnumData<PantType>(DataManager.Ins.IdPant);
+		skinType = DataManager.Ins.IdSkin;
+		weaponType = DataManager.Ins.IdWeapon;
+		hatType = DataManager.Ins.IdHat;
+		accessoryType = DataManager.Ins.IdAccessory;
+		pantType = DataManager.Ins.IdPant;
 	}
 
 	#region Skin
@@ -47,27 +47,27 @@ public class Player : Character
 		target.SetMask(false);
 	}
 
-	public void TryCloth(ShopType shopType, Enum type) {
+	public void TryCloth(ShopType shopType, int index) {
 		switch (shopType) {
 			case ShopType.Hat:
 				currentSkin.DespawnHat();
-				ChangeHat((HatType)type);
+				ChangeHat(index);
 				break;
 			case ShopType.Weapon:
 				currentSkin.DespawnWeapon();
-				ChangeWeapon((WeaponType)type);
+				ChangeWeapon(index);
 				break;
 			case ShopType.Skin:
 				TakeOffClothes();
-				skinType = (SkinType)type;
+				skinType = index;
 				WearClothes();
 				break;
 			case ShopType.Accessory:
 				currentSkin.DespawnAccessory();
-				ChangeAccessory((AccessoryType)type);
+				ChangeAccessory(index);
 				break;
 			case ShopType.Pant:
-				ChangePant((PantType)type);
+				ChangePant(index);
 				break;
 		}
 	}

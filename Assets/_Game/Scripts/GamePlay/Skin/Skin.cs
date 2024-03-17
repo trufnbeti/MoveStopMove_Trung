@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skin : GameUnit
+public class Skin : MonoBehaviour
 {
-
+	[Header("References")]
 	[SerializeField] private PantData pantData;
 
 	[SerializeField] private Transform head;
@@ -24,40 +24,46 @@ public class Skin : GameUnit
 
 	public Weapon Weapon => currentWeapon;
 
-	public void ChangeWeapon(WeaponType weaponType) {
-		currentWeapon = SimplePool.Spawn<Weapon>((PoolType)weaponType, rightHand);
+	public void ChangeWeapon(int index) {
+		currentWeapon = Instantiate(SkinManager.Ins.weaponData.GetWeapon(index), rightHand);
 	}
 
-	public void ChangeAccessory(AccessoryType accessoryType) {
-		if (isCanChange && accessoryType != AccessoryType.None) {
-			currentAccessory = SimplePool.Spawn<Accessory>((PoolType)accessoryType, leftHand);
+	public void ChangeAccessory(int index) {
+		if (isCanChange && index != 0) {
+			currentAccessory = Instantiate(SkinManager.Ins.accessoryData.GetPrefab(index), leftHand);
 		}
 	}
 
-	public void ChangeHat(HatType hatType) {
-		if (isCanChange && hatType != HatType.None) {
-			currentHat = SimplePool.Spawn<Hat>((PoolType)hatType, head);
+	public void ChangeHat(int index) {
+		if (isCanChange && index != 0) {
+			currentHat = Instantiate(SkinManager.Ins.hatData.GetPrefab(index), head);
 		}
 	}
 
-	public void ChangePant(PantType pantType) {
-		pant.material = pantData.GetPant(pantType);
+	public void ChangePant(int index) {
+		pant.material = SkinManager.Ins.pantData.GetPrefab(index);
 	}
 
 	public void OnDespawn() {
-		SimplePool.Despawn(currentWeapon);
-		if (currentAccessory) SimplePool.Despawn(currentAccessory);
-		if (currentHat) SimplePool.Despawn(currentHat);
+		DespawnWeapon();
+		DespawnAccessory();
+		DespawnHat();
 	}
 
 	public void DespawnHat() {
-		if (currentHat) SimplePool.Despawn(currentHat);
+		if (currentHat) {
+			Destroy(currentHat.gameObject);
+		}
 	}
 	public void DespawnAccessory() {
-		if (currentAccessory) SimplePool.Despawn(currentAccessory);
+		if (currentAccessory) {
+			Destroy(currentAccessory.gameObject);
+		}
 	}
 
-	internal void DespawnWeapon() {
-		if (currentWeapon) SimplePool.Despawn(currentWeapon);
+	public void DespawnWeapon() {
+		if (currentWeapon) {
+			Destroy(currentWeapon.gameObject);
+		}
 	}
 }

@@ -39,11 +39,11 @@ public class Bot : Character {
 	public override void WearClothes() {
 		base.WearClothes();
 
-		ChangeSkin(SkinType.Normal);
-		ChangeWeapon(Utilities.RandomEnumValue<WeaponType>());
-		ChangeHat(Utilities.RandomEnumValue<HatType>());
-		ChangeAccessory(Utilities.RandomEnumValue<AccessoryType>());
-		ChangePant(Utilities.RandomEnumValue<PantType>());
+		ChangeSkin(0);
+		ChangeWeapon(0);
+		ChangeHat(0);
+		ChangeAccessory(0);
+		ChangePant(0);
 	}
 	
 	public void SetDestination(Vector3 point) {

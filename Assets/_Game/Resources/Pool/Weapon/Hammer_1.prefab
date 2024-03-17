@@ -129,6 +129,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fe394bf123094428c6ead4a8a32054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 2
   child: {fileID: 5082405160813739073}
-  bulletType: 11
+  bulletType: 2

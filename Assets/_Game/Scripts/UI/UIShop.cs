@@ -18,9 +18,10 @@ public class UIShop : UICanvas {
 	[SerializeField]private ShopItem currentItem;
 	private ShopBar currentBar;
 	[SerializeField]private ShopItem itemEquipped;
+	private int currentIdx = 0;
 
 	public ShopType shopType => currentBar.Type;
-	public ItemState GetState(Enum t) => (ItemState)DataManager.Ins.GetStateData(t);
+	// public ItemState GetState(Enum t) => (ItemState)DataManager.Ins.GetStateData<>(t);
 
 	private void Awake() {
 		miniPool.OnInit(shopItem, 0, content);
@@ -62,29 +63,28 @@ public class UIShop : UICanvas {
 
 		switch (currentBar.Type) {
 			case ShopType.Hat:
-				InitShopItems(shopData.hats.List, ref itemEquipped);
+				InitShopItems(shopData.hats.List);
 				break;
 			case ShopType.Pant:
-				InitShopItems(shopData.pants.List, ref itemEquipped);
+				InitShopItems(shopData.pants.List);
 				break;
 			case ShopType.Accessory:
-				InitShopItems(shopData.accessories.List, ref itemEquipped);
+				InitShopItems(shopData.accessories.List);
 				break;
 			case ShopType.Skin:
-				InitShopItems(shopData.skins.List, ref itemEquipped);
+				InitShopItems(shopData.skins.List);
 				break;
 		}
 	}
 
 	public void SelectItem(ShopItem item) {
 		if (currentItem != null) {
-			int id = Convert.ToInt32(currentItem.Type);
-			Debug.Log(id);
-			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(currentItem.Type);
+			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(currentIdx, shopType.GetType()); //TODO truyền shopType vào xong so sánh với từng phần tử trong shopType
 			currentItem.SetState(itemState);
 		}
 
 		currentItem = item;
+		currentIdx = Convert.ToInt32(currentItem.itemType);
 
 		switch (currentItem.state) {
 			case ItemState.Buy:
@@ -98,7 +98,7 @@ public class UIShop : UICanvas {
 				break;
 		}
 		
-		LevelManager.Ins.player.TryCloth(shopType, currentItem.Type);
+		LevelManager.Ins.player.TryCloth(shopType, currentIdx);
 		currentItem.SetState(ItemState.Selecting);
 
 		coinTxt.text = item.data.cost.ToString();
@@ -123,6 +123,7 @@ public class UIShop : UICanvas {
 					DataManager.Ins.SkinStatus[currentItem.data.id] = 1;
 					break;
 			}
+			
 			SelectItem(currentItem);
 
 			playerCoinTxt.text = DataManager.Ins.Coin.ToString();
@@ -131,7 +132,7 @@ public class UIShop : UICanvas {
 
 	public void OnBtnEquipClick() {
 		if (currentItem != null) {
-			UserData.Ins.SetEnumData(currentItem.Type.ToString(), ItemState.Equipped);
+			UserData.Ins.SetEnumData(currentItem.itemType.ToString(), ItemState.Equipped);
 
 			switch (shopType) {
 				case ShopType.Hat:
@@ -169,9 +170,10 @@ public class UIShop : UICanvas {
 
 	#endregion
 
-	private void InitShopItems<T>(List<ShopItemData<T>> itemDatas, ref ShopItem itemEquipped) where T : Enum {
+	private void InitShopItems<T>(List<ShopItemData<T>> itemDatas) where T : Enum {
 		for (int i = 0; i < itemDatas.Count; ++i) {
-			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(itemDatas[i].type);
+			int id = Convert.ToInt32(itemDatas[i].type);
+			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(id, shopType.GetType());
 			ShopItem item = miniPool.Spawn();
 			item.SetData(itemDatas[i], this);
 			item.SetState(itemState);

@@ -192,6 +192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cc84e123c2722488c49439ee33fb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 19
+  poolType: 10
   moveSpeed: 10
   child: {fileID: 8233536912066704651}

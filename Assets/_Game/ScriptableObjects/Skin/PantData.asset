@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2be6dc360fb2744da4084b83719e4c4, type: 3}
   m_Name: PantData
   m_EditorClassIdentifier: 
-  materials:
+  prefabs:
   - {fileID: 2100000, guid: d1742f115122c0045842c337ee221c51, type: 2}
   - {fileID: 2100000, guid: 5a78d65f8ca458e428a6e23b587ccd4c, type: 2}
   - {fileID: 2100000, guid: 6f00084d8c0023045908e959a13638da, type: 2}

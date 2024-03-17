@@ -48,49 +48,17 @@ public enum PoolType {
 
 	Bot = 1,
 
-	Weapon_Hammer_1 = 2,
-	Weapon_Hammer_2 = 3,
-	Weapon_Hammer_3 = 4,
-	Weapon_Candy_1 = 5,
-	Weapon_Candy_2 = 6,
-	Weapon_Candy_3 = 7,
-	Weapon_Boomerang_1 = 8,
-	Weapon_Boomerang_2 = 9,
-	Weapon_Boomerang_3 = 10,
+	Bullet_Hammer_1 = 2,
+	Bullet_Hammer_2 = 3,
+	Bullet_Hammer_3 = 4,
+	Bullet_Candy_1 = 5,
+	Bullet_Candy_2 = 6,
+	Bullet_Candy_3 = 7,
+	Bullet_Boomerang_1 = 8,
+	Bullet_Boomerang_2 = 9,
+	Bullet_Boomerang_3 = 10,
 
-	Bullet_Hammer_1 = 11,
-	Bullet_Hammer_2 = 12,
-	Bullet_Hammer_3 = 13,
-	Bullet_Candy_1 = 14,
-	Bullet_Candy_2 = 15,
-	Bullet_Candy_3 = 16,
-	Bullet_Boomerang_1 = 17,
-	Bullet_Boomerang_2 = 18,
-	Bullet_Boomerang_3 = 19,
-
-	Skin_Normal = 20,
-	Skin_Devil = 21,
-	Skin_Angle = 22,
-	Skin_Witch = 23,
-	Skin_Deadpool = 24,
-	Skin_Thor = 25,
-
-	Hat_Arrow = 26,
-	Hat_Cap = 27,
-	Hat_Cowboy = 28,
-	Hat_Crown = 29,
-	Hat_Ear = 30,
-	Hat_StrawHat = 31,
-	Hat_Headphone = 32,
-	Hat_Horn = 33,
-	Hat_Police = 34,
-
-	Acc_Book = 35,
-	Acc_Captain = 36,
-	Acc_Headphone = 37,
-	Acc_Shield = 38,
-
-	TargetIndicator = 39,
+	TargetIndicator = 11,
 }
 
 public enum Anim {
@@ -154,22 +122,10 @@ public enum HatType {
 public enum SkinType {
 	Normal = 0,
 	Devil = 1,
-	Angle = 2,
+	Angel = 2,
 	Witch = 3,
 	Deadpool = 4,
 	Thor = 5,
-}
-
-public enum BulletType {
-	Hammer_1 = 0,
-	Hammer_2 = 1,
-	Hammer_3 = 2,
-	Candy_1 = 3,
-	Candy_2 = 4,
-	Candy_3 = 5,
-	Boomerang_1 = 6,
-	Boomerang_2 = 7,
-	Boomerang_3 = 8
 }
 
 public enum PrefKey {

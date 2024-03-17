@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cc84e123c2722488c49439ee33fb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 17
+  poolType: 8
   moveSpeed: 10
   child: {fileID: 8863517940129454108}
 --- !u!1 &8675119224432101888
