@@ -1165,6 +1165,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonState
       objectReference: {fileID: 0}
+    - target: {fileID: 4710817559997570200, guid: 19f35883b770661408ae12ac03483463, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1131723773337010523}
+    - target: {fileID: 4710817559997570200, guid: 19f35883b770661408ae12ac03483463, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnBtnEquipClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710817559997570200, guid: 19f35883b770661408ae12ac03483463, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIWeapon, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710817559997570200, guid: 19f35883b770661408ae12ac03483463, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7272730471673116515, guid: 19f35883b770661408ae12ac03483463, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1383,11 +1399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7272730471673116515, guid: 7b5f0748a3d42b24fa37e4d7e6d26ae0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7272730471673116515, guid: 7b5f0748a3d42b24fa37e4d7e6d26ae0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7272730471673116515, guid: 7b5f0748a3d42b24fa37e4d7e6d26ae0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -48,11 +48,11 @@ public class Character : GameUnit {
 		LevelManager.Ins.CharacterDeath(this);
 	}
 	
-	public virtual void WearClothes() {
+	protected virtual void WearClothes() {
 
 	}
 	
-	public virtual void TakeOffClothes() {
+	protected void TakeOffClothes() {
 		currentSkin?.OnDespawn();
 		Destroy(currentSkin.gameObject);
 	}

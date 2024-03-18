@@ -25,12 +25,17 @@ public class UIWeapon : UICanvas
 
     public override void CloseDirectly() {
         base.CloseDirectly();
+        
         if (currentWeapon != null) {
             Destroy(currentWeapon.gameObject);
             currentWeapon = null;
         }
+        
         UIManager.Ins.OpenUI<UIMainMenu>();
+        this.PostEvent(EventID.LoadSkin);
     }
+
+    #region BtnClick
 
     public void OnBtnNextClick() {
         ChangeWeapon(weaponData.NextWeaponIdx(currentIdx));
@@ -46,10 +51,21 @@ public class UIWeapon : UICanvas
             DataManager.Ins.SetStateData(currentIdx, 1, ShopType.Weapon);
             LoadBtn();
         }
-        //TODO làm nốt equip weapon + fix rotate uzi
     }
 
-    public void ChangeWeapon(int index) {
+    public void OnBtnEquipClick() {
+        if (currentWeapon != null) {
+            DataManager.Ins.SetStateData(currentIdx, 2, ShopType.Weapon);
+            DataManager.Ins.SetStateData(DataManager.Ins.IdWeapon, 1, ShopType.Weapon);
+            DataManager.Ins.IdWeapon = currentIdx;
+            
+            LoadBtn();
+        }
+    }
+    
+    #endregion
+
+    private void ChangeWeapon(int index) {
         currentIdx = index;
 
         if (currentWeapon != null ) {
@@ -61,11 +77,13 @@ public class UIWeapon : UICanvas
         currentWeapon.transform.localRotation = Quaternion.identity;
         currentWeapon.transform.localScale = Vector3.one;
         
+        this.PostEvent(EventID.TrySkin, new TrySkin(currentIdx, ShopType.Weapon));
+        
         //check data dong
         LoadBtn();
         
     }
-
+    
     private void LoadBtn() {
         int stateWeapon = DataManager.Ins.GetStateData(currentIdx, ShopType.Weapon);
         buttonState.SetState((StateButton)stateWeapon);

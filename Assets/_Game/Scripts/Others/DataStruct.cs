@@ -8,6 +8,8 @@ public enum CameraState {
 public enum EventID {
 	Play,
 	CharacterDeath,
+	LoadSkin,
+	TrySkin
 }
 
 public enum GameState {
@@ -86,18 +88,6 @@ public enum PantType {
 	Pant_9 = 8,
 }
 
-public enum WeaponType {
-	Hammer_1 = 0,
-	Hammer_2 = 1,
-	Hammer_3 = 2,
-	Candy_1 = 3,
-	Candy_2 = 4,
-	Candy_3 = 5,
-	Boomerang_1 = 6,
-	Boomerang_2 = 7,
-	Boomerang_3 = 8,
-}
-
 public enum AccessoryType {
 	None = 0,
 	Book = 1,
@@ -129,18 +119,7 @@ public enum SkinType {
 }
 
 public enum PrefKey {
-	PlayerData,
-	Level = 0,
-	Coin = 1,
-	SoundIsOn = 2,
-	VibrateIsOn = 3,
-	RemoveAds = 4,
-	Tutorial = 5,
-	PlayerWeapon = 6,
-	PlayerHat = 7,
-	PlayerPant = 8,
-	PlayerAccessory = 9,
-	PlayerSkin = 10,
+	PlayerData
 }
 
 

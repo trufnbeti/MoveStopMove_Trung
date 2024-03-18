@@ -36,7 +36,7 @@ public class Bot : Character {
 		StartCoroutine(WaitForDespawn(2f));
 	}
 
-	public override void WearClothes() {
+	protected override void WearClothes() {
 		base.WearClothes();
 
 		ChangeSkin(0);

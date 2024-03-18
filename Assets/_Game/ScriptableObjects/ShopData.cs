@@ -31,5 +31,4 @@ public class ShopItemData <T> : ShopItemData where T : Enum {
 public class ShopItemData {
 	public Sprite icon;
 	public int cost;
-	public int id;
 }

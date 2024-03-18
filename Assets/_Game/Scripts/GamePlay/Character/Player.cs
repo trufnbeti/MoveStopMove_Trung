@@ -15,15 +15,41 @@ public class Player : Character
 	private int hatType = 0;
 	private int accessoryType = 0;
 	private int pantType = 0;
+	
+	#region Event
+
+	private Action<object> actionLoadSkin;
+	private Action<object> actionTrySkin;
+
+	#endregion
+	
+	private void OnEnable() {
+		actionLoadSkin = (param) => {
+			TakeOffClothes();
+			OnTakeClothsData();
+			WearClothes();
+		};
+		actionTrySkin = (param) => TryCloth((TrySkin)param);
+
+	}
 
 	public override void OnInit() {
+		this.RegisterListener(EventID.LoadSkin, actionLoadSkin);
+		this.RegisterListener(EventID.TrySkin, actionTrySkin);
 		OnTakeClothsData();
 		base.OnInit();
 		TF.rotation = Quaternion.Euler(Vector3.up * 180);
 		indicator.SetName("YOU");
 	}
-	
-	public void OnTakeClothsData() {
+
+	public override void OnDeath() {
+		this.RemoveListener(EventID.LoadSkin, actionLoadSkin);
+		this.RemoveListener(EventID.TrySkin, actionTrySkin);
+		base.OnDeath();
+		counter.Cancel();
+	}
+
+	private void OnTakeClothsData() {
 		skinType = DataManager.Ins.IdSkin;
 		weaponType = DataManager.Ins.IdWeapon;
 		hatType = DataManager.Ins.IdHat;
@@ -32,7 +58,7 @@ public class Player : Character
 	}
 
 	#region Skin
-	public override void WearClothes() {
+	protected override void WearClothes() {
 		base.WearClothes(); 
 
 		ChangeSkin(skinType);
@@ -41,37 +67,37 @@ public class Player : Character
 		ChangeAccessory(accessoryType);
 		ChangePant(pantType);
 	}
-
-	public override void RemoveTarget(Character target) {
-		base.RemoveTarget(target);
-		target.SetMask(false);
-	}
-
-	public void TryCloth(ShopType shopType, int index) {
-		switch (shopType) {
+	
+	private void TryCloth(TrySkin obj) {
+		switch (obj.shopType) {
 			case ShopType.Hat:
 				currentSkin.DespawnHat();
-				ChangeHat(index);
+				ChangeHat(obj.index);
 				break;
 			case ShopType.Weapon:
 				currentSkin.DespawnWeapon();
-				ChangeWeapon(index);
+				ChangeWeapon(obj.index);
 				break;
 			case ShopType.Skin:
 				TakeOffClothes();
-				skinType = index;
+				skinType = obj.index;
 				WearClothes();
 				break;
 			case ShopType.Accessory:
 				currentSkin.DespawnAccessory();
-				ChangeAccessory(index);
+				ChangeAccessory(obj.index);
 				break;
 			case ShopType.Pant:
-				ChangePant(index);
+				ChangePant(obj.index);
 				break;
 		}
 	}
 	#endregion
+	
+	public override void RemoveTarget(Character target) {
+		base.RemoveTarget(target);
+		target.SetMask(false);
+	}
 
 	public override void OnAttack() {
 		base.OnAttack();
@@ -117,5 +143,15 @@ public class Player : Character
 				OnAttack();
 			}
 		}
+	}
+}
+
+public class TrySkin {
+	public int index;
+	public ShopType shopType;
+
+	public TrySkin(int index, ShopType shopType) {
+		this.index = index;
+		this.shopType = shopType;
 	}
 }

@@ -30,5 +30,4 @@ public class WeaponItem {
 	public string name;
 	public Weapon weapon;
 	public int cost;
-	public int id;
 }

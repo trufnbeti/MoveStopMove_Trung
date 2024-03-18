@@ -42,9 +42,7 @@ public class UIShop : UICanvas {
 		base.CloseDirectly();
 		UIManager.Ins.OpenUI<UIMainMenu>();
 		
-		LevelManager.Ins.player.TakeOffClothes();
-		LevelManager.Ins.player.OnTakeClothsData();
-		LevelManager.Ins.player.WearClothes();
+		this.PostEvent(EventID.LoadSkin);
 	}
 
 	public void SelectBar(ShopBar shopBar) {
@@ -98,7 +96,8 @@ public class UIShop : UICanvas {
 				break;
 		}
 		
-		LevelManager.Ins.player.TryCloth(shopType, currentIdx);
+		this.PostEvent(EventID.TrySkin, new TrySkin(currentIdx, shopType));
+		
 		currentItem.SetState(ItemState.Selecting);
 
 		coinTxt.text = item.data.cost.ToString();
