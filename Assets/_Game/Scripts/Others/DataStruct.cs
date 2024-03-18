@@ -9,7 +9,8 @@ public enum EventID {
 	Play,
 	CharacterDeath,
 	LoadSkin,
-	TrySkin
+	TrySkin,
+	Home,
 }
 
 public enum GameState {
@@ -39,6 +40,11 @@ public enum ItemState {
 	Bought = 1,
 	Equipped = 2,
 	Selecting = 3
+}
+
+public enum SettingType {
+	Sound,
+	Vibrate
 }
 
 public enum ParticleType {

@@ -17,6 +17,7 @@ public class LevelManager : Singleton<LevelManager> {
     #region Event
 
     private Action<object> actionPlay;
+    private Action<object> actionHome;
 
     #endregion
 
@@ -28,12 +29,15 @@ public class LevelManager : Singleton<LevelManager> {
 
     private void OnEnable() {
         actionPlay = (param) => OnPlay();
+        actionHome = (param) => Home();
         
         this.RegisterListener(EventID.Play, actionPlay);
+        this.RegisterListener(EventID.Home, actionHome);
     }
 
     private void OnDisable() {
         this.RemoveListener(EventID.Play, actionPlay);
+        this.RemoveListener(EventID.Home, actionHome);
     }
 
     private void OnInit() {
@@ -127,5 +131,23 @@ public class LevelManager : Singleton<LevelManager> {
         bots.Add(bot);
         
         bot.SetScore(player.Score > 0 ? Random.Range(player.Score - 2, player.Score + 2) : 1);
+    }
+
+    private void OnReset() {
+        player.OnDespawn();
+        for (int i = 0; i < bots.Count; i++) {
+            bots[i].OnDespawn();
+        }
+
+        bots.Clear();
+        SimplePool.CollectAll();
+    }
+
+    private void Home() {
+        UIManager.Ins.CloseAll();
+        OnReset();
+        OnLoadLevel(levelIdx);
+        OnInit();
+        UIManager.Ins.OpenUI<UIMainMenu>();
     }
 }

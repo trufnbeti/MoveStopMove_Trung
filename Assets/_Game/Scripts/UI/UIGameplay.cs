@@ -29,13 +29,15 @@ public class UIGameplay : UICanvas
         this.RegisterListener(EventID.CharacterDeath, actionCharacterDeath);
         
         GameManager.Ins.ChangeState(GameState.Gameplay);
-        // LevelManager.Ins.SetTargetIndicatorAlpha(1);
+    }
+
+    public void OnBtnSettingClick() {
+        UIManager.Ins.OpenUI<UISetting>();
     }
     
     public override void CloseDirectly() {
         this.RemoveListener(EventID.CharacterDeath, actionCharacterDeath);
         base.CloseDirectly();
-        // LevelManager.Ins.SetTargetIndicatorAlpha(0);
     }
 
     private void UpdateAmount() {
