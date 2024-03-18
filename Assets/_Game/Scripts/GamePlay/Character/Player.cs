@@ -20,6 +20,7 @@ public class Player : Character
 
 	private Action<object> actionLoadSkin;
 	private Action<object> actionTrySkin;
+	private Action<object> actionRevive;
 
 	#endregion
 	
@@ -30,12 +31,15 @@ public class Player : Character
 			WearClothes();
 		};
 		actionTrySkin = (param) => TryCloth((TrySkin)param);
+		actionRevive = (param) => OnRevive();
 
 	}
 
 	public override void OnInit() {
 		this.RegisterListener(EventID.LoadSkin, actionLoadSkin);
 		this.RegisterListener(EventID.TrySkin, actionTrySkin);
+		this.RegisterListener(EventID.Revive, actionRevive);
+		
 		OnTakeClothsData();
 		base.OnInit();
 		TF.rotation = Quaternion.Euler(Vector3.up * 180);
@@ -45,6 +49,8 @@ public class Player : Character
 	public override void OnDeath() {
 		this.RemoveListener(EventID.LoadSkin, actionLoadSkin);
 		this.RemoveListener(EventID.TrySkin, actionTrySkin);
+		this.RemoveListener(EventID.Revive, actionRevive);
+
 		base.OnDeath();
 		counter.Cancel();
 	}
@@ -120,6 +126,12 @@ public class Player : Character
 	protected override void SetSize(float size) {
 		base.SetSize(size);
 		CameraFollow.Ins.SetRateOffset((this.size - Constant.MIN_SIZE) / (Constant.MAX_SIZE - Constant.MIN_SIZE));
+	}
+
+	private void OnRevive() {
+		ChangeAnim(Anim.idle.ToString());
+		IsDead = false;
+		ClearTarget();
 	}
 
 	private void Update() {

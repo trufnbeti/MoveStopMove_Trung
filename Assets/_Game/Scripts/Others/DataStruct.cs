@@ -11,6 +11,7 @@ public enum EventID {
 	LoadSkin,
 	TrySkin,
 	Home,
+	Revive
 }
 
 public enum GameState {

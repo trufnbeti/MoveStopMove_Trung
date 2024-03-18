@@ -33,6 +33,7 @@ public class Character : GameUnit {
 		score = 0;
 		
 		WearClothes();
+		ClearTarget();
 
 		indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
 		indicator.SetTarget(indicatorPoint);
@@ -151,6 +152,10 @@ public class Character : GameUnit {
 	}
 	
 	#endregion
+
+	protected void ClearTarget() {
+		targets.Clear();
+	}
 	
 
 	private Character GetTargetInRange() {

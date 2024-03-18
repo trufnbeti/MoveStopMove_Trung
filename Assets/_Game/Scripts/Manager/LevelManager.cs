@@ -18,6 +18,7 @@ public class LevelManager : Singleton<LevelManager> {
 
     private Action<object> actionPlay;
     private Action<object> actionHome;
+    private Action<object> actionRevive;
 
     #endregion
 
@@ -30,14 +31,17 @@ public class LevelManager : Singleton<LevelManager> {
     private void OnEnable() {
         actionPlay = (param) => OnPlay();
         actionHome = (param) => Home();
+        actionRevive = (param) => OnRevive();
         
         this.RegisterListener(EventID.Play, actionPlay);
         this.RegisterListener(EventID.Home, actionHome);
+        this.RegisterListener(EventID.Revive, actionRevive);
     }
 
     private void OnDisable() {
         this.RemoveListener(EventID.Play, actionPlay);
         this.RemoveListener(EventID.Home, actionHome);
+        this.RemoveListener(EventID.Revive, actionRevive);
     }
 
     private void OnInit() {
@@ -104,7 +108,14 @@ public class LevelManager : Singleton<LevelManager> {
 
     public void CharacterDeath(Character character) {
         if (character is Player) {
-            Debug.Log("LOSE");
+            UIManager.Ins.CloseAll();
+
+            if (!isRevive) {
+                isRevive = true;
+                UIManager.Ins.OpenUI<UIRevive>();
+            } else {
+                //open ui lose
+            }
         } else if (character is Bot) {
             bots.Remove(character as Bot);
 
@@ -133,6 +144,8 @@ public class LevelManager : Singleton<LevelManager> {
         bot.SetScore(player.Score > 0 ? Random.Range(player.Score - 2, player.Score + 2) : 1);
     }
 
+    #region Using Event
+
     private void OnReset() {
         player.OnDespawn();
         for (int i = 0; i < bots.Count; i++) {
@@ -142,6 +155,12 @@ public class LevelManager : Singleton<LevelManager> {
         bots.Clear();
         SimplePool.CollectAll();
     }
+
+    private void OnRevive() {
+        player.TF.position = RandomPoint();
+    }
+
+    #endregion
 
     private void Home() {
         UIManager.Ins.CloseAll();
