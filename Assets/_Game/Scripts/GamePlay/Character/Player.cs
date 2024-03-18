@@ -15,6 +15,8 @@ public class Player : Character
 	private int hatType = 0;
 	private int accessoryType = 0;
 	private int pantType = 0;
+
+	public int Coin => Score * 10;
 	
 	#region Event
 

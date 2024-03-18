@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,5 +10,10 @@ public class UILose : UICanvas
     public override void Open() {
         base.Open();
         GameManager.Ins.ChangeState(GameState.Finish);
+    }
+
+    public void OnBtnHomeClick() {
+        this.PostEvent(EventID.Home);
+        this.PostEvent(EventID.AddCoin);
     }
 }

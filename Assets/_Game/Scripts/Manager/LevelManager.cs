@@ -19,6 +19,7 @@ public class LevelManager : Singleton<LevelManager> {
     private Action<object> actionPlay;
     private Action<object> actionHome;
     private Action<object> actionRevive;
+    private Action<object> actionAddCoin;
 
     #endregion
 
@@ -32,16 +33,21 @@ public class LevelManager : Singleton<LevelManager> {
         actionPlay = (param) => OnPlay();
         actionHome = (param) => Home();
         actionRevive = (param) => OnRevive();
+        actionAddCoin = (param) => {
+            DataManager.Ins.Coin += player.Coin;
+        };
         
         this.RegisterListener(EventID.Play, actionPlay);
         this.RegisterListener(EventID.Home, actionHome);
         this.RegisterListener(EventID.Revive, actionRevive);
+        this.RegisterListener(EventID.AddCoin, actionAddCoin);
     }
 
     private void OnDisable() {
         this.RemoveListener(EventID.Play, actionPlay);
         this.RemoveListener(EventID.Home, actionHome);
         this.RemoveListener(EventID.Revive, actionRevive);
+        this.RemoveListener(EventID.AddCoin, actionAddCoin);
     }
 
     private void OnInit() {
