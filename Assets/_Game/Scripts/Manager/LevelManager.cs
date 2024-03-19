@@ -21,6 +21,7 @@ public class LevelManager : Singleton<LevelManager> {
     private Action<object> actionRevive;
     private Action<object> actionAddCoin;
     private Action<object> actionLose;
+    private Action<object> actionNextLevel;
 
     #endregion
 
@@ -38,12 +39,16 @@ public class LevelManager : Singleton<LevelManager> {
         actionAddCoin = (param) => {
             DataManager.Ins.Coin += player.Coin;
         };
+        actionNextLevel = (param) => {
+            levelIdx++;
+        };
         
         this.RegisterListener(EventID.Play, actionPlay);
         this.RegisterListener(EventID.Home, actionHome);
         this.RegisterListener(EventID.Revive, actionRevive);
         this.RegisterListener(EventID.AddCoin, actionAddCoin);
         this.RegisterListener(EventID.Lose, actionLose);
+        this.RegisterListener(EventID.NextLevel, actionNextLevel);
     }
 
     private void OnDisable() {
@@ -52,6 +57,7 @@ public class LevelManager : Singleton<LevelManager> {
         this.RemoveListener(EventID.Revive, actionRevive);
         this.RemoveListener(EventID.AddCoin, actionAddCoin);
         this.RemoveListener(EventID.Lose, actionLose);
+        this.RemoveListener(EventID.NextLevel, actionNextLevel);
     }
 
     private void OnInit() {
@@ -62,7 +68,7 @@ public class LevelManager : Singleton<LevelManager> {
         }
 
         isRevive = false;
-        botLeft = currentLevel.botTotal - currentLevel.botReal - 1;
+        botLeft = currentLevel.totalCharacter - currentLevel.botReal - 1;
     }
     
     public void OnLoadLevel(int level) {
@@ -126,7 +132,7 @@ public class LevelManager : Singleton<LevelManager> {
                 }
 
                 if (bots.Count == 0) {
-                    Debug.Log("WIN");
+                    OnWin();
                 }
             }
         }
@@ -162,6 +168,12 @@ public class LevelManager : Singleton<LevelManager> {
     private void OnLose() {
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI<UILose>().SetCoin(player.Coin); 
+    }
+
+    private void OnWin() {
+        UIManager.Ins.CloseAll();
+        UIManager.Ins.OpenUI<UIWin>().SetCoin(player.Coin);
+        player.ChangeAnim(Anim.win.ToString());
     }
 
     #endregion

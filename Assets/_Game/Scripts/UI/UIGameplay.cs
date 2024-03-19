@@ -14,12 +14,9 @@ public class UIGameplay : UICanvas
 
     #endregion
 
-    private void OnEnable() {
-        actionCharacterDeath = (param) => UpdateAmount();
-    }
-
     public override void Setup() {
         base.Setup();
+        actionCharacterDeath = (param) => UpdateAmount();
         UpdateAmount();
     }
 

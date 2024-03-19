@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class Level : MonoBehaviour
 {
     [SerializeField] Transform minPoint,maxPoint;
     public int botReal = 10;
-    public int botTotal = 50;
+    public int totalCharacter = 50;
 
     private Vector3 randPoint;
     public Vector3 RandomPoint() {

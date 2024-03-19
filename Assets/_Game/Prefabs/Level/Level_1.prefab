@@ -113,7 +113,7 @@ MonoBehaviour:
   minPoint: {fileID: 4580264709875837922}
   maxPoint: {fileID: 2438372844222820055}
   botReal: 10
-  botTotal: 50
+  totalCharacter: 11
 --- !u!1 &7349117610732814484
 GameObject:
   m_ObjectHideFlags: 0
