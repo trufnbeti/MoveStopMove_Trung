@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +19,6 @@ public class Bot : Character {
 		SetMask(false);
 		ResetAnim();
 		Name = NameUtility.GetRandomName();
-		indicator.SetName(Name);
 	}
 
 	public override void OnDespawn() {

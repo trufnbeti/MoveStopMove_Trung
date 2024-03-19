@@ -68,8 +68,6 @@ public enum PoolType {
 	Bullet_Boomerang_1 = 8,
 	Bullet_Boomerang_2 = 9,
 	Bullet_Boomerang_3 = 10,
-
-	TargetIndicator = 11,
 }
 
 public enum Anim {

@@ -49,7 +49,6 @@ public class Player : Character
 		base.OnInit();
 		TF.rotation = Quaternion.Euler(Vector3.up * 180);
 		Name = "YOU";
-		indicator.SetName(Name);
 	}
 
 	public override void OnHit(Character character) {

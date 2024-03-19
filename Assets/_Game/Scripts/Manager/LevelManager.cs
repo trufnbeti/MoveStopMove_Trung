@@ -63,7 +63,6 @@ public class LevelManager : Singleton<LevelManager> {
 
         isRevive = false;
         botLeft = currentLevel.botTotal - currentLevel.botReal - 1;
-        SetTargetIndicatorAlpha(0);
     }
     
     public void OnLoadLevel(int level) {
@@ -78,8 +77,6 @@ public class LevelManager : Singleton<LevelManager> {
         for (int i = 0; i < bots.Count; ++i) {
             bots[i].ChangeState(new PatrolState());
         }
-
-        SetTargetIndicatorAlpha(1f);
     }
 
     public Vector3 RandomPoint() {
@@ -105,15 +102,6 @@ public class LevelManager : Singleton<LevelManager> {
                 }
             }
         } while (true);
-    }
-    
-    public void SetTargetIndicatorAlpha(float alpha) {
-        List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            (list[i] as TargetIndicator).SetAlpha(alpha);
-        }
     }
 
     public void CharacterDeath(Character character) {

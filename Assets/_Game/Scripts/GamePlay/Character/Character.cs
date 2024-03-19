@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Character : GameUnit {
 	[SerializeField] Transform indicatorPoint;
-	protected TargetIndicator indicator;
+	public Target targetIndicator;
 	
 	[SerializeField] GameObject mask;
 	
@@ -39,14 +39,10 @@ public class Character : GameUnit {
 		
 		WearClothes();
 		ClearTarget();
-
-		indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
-		indicator.SetTarget(indicatorPoint);
 	}
 	
 	public virtual void OnDespawn() {
 		TakeOffClothes();
-		SimplePool.Despawn(indicator);
 	}
 	
 	public virtual void OnDeath() {
@@ -69,7 +65,6 @@ public class Character : GameUnit {
 	
 	public void SetScore(int score) {
 		this.score = score > 0 ? score : 0;
-		indicator.SetScore(this.score);
 		SetSize(1 + this.score * 0.1f);
 	}
 	
