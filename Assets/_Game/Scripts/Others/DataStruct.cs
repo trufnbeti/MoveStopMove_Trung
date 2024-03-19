@@ -13,6 +13,7 @@ public enum EventID {
 	Home,
 	Revive,
 	AddCoin,
+	Lose,
 }
 
 public enum GameState {

@@ -17,7 +17,7 @@ public class UIRevive : UICanvas
 
     public void OnBtnCloseClick() {
         CloseDirectly();
-        //thua
+        this.PostEvent(EventID.Lose);
     }
 
     public void OnBtnReviveClick() {

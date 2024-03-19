@@ -15,14 +15,20 @@ public class Player : Character
 	private int hatType = 0;
 	private int accessoryType = 0;
 	private int pantType = 0;
+	
+	private Character attacker;
+	public Character Attacker => attacker;
 
 	public int Coin => Score * 10;
+
+	private int ranking;
+
+	public int Ranking => ranking;
 	
 	#region Event
 
 	private Action<object> actionLoadSkin;
 	private Action<object> actionTrySkin;
-	private Action<object> actionRevive;
 
 	#endregion
 	
@@ -33,25 +39,30 @@ public class Player : Character
 			WearClothes();
 		};
 		actionTrySkin = (param) => TryCloth((TrySkin)param);
-		actionRevive = (param) => OnRevive();
 
 	}
 
 	public override void OnInit() {
-		this.RegisterListener(EventID.LoadSkin, actionLoadSkin);
-		this.RegisterListener(EventID.TrySkin, actionTrySkin);
-		this.RegisterListener(EventID.Revive, actionRevive);
+		OnReset();
 		
 		OnTakeClothsData();
 		base.OnInit();
 		TF.rotation = Quaternion.Euler(Vector3.up * 180);
-		indicator.SetName("YOU");
+		Name = "YOU";
+		indicator.SetName(Name);
+	}
+
+	public override void OnHit(Character character) {
+		if (!IsDead) {
+			attacker = character;
+			ranking = LevelManager.Ins.TotalCharater;
+		}
+		base.OnHit(character);
 	}
 
 	public override void OnDeath() {
 		this.RemoveListener(EventID.LoadSkin, actionLoadSkin);
 		this.RemoveListener(EventID.TrySkin, actionTrySkin);
-		this.RemoveListener(EventID.Revive, actionRevive);
 
 		base.OnDeath();
 		counter.Cancel();
@@ -130,12 +141,18 @@ public class Player : Character
 		CameraFollow.Ins.SetRateOffset((this.size - Constant.MIN_SIZE) / (Constant.MAX_SIZE - Constant.MIN_SIZE));
 	}
 
-	private void OnRevive() {
+	public void OnRevive() {
+		OnReset();
 		ChangeAnim(Anim.idle.ToString());
 		IsDead = false;
 		ClearTarget();
 	}
 
+	private void OnReset() {
+		this.RegisterListener(EventID.LoadSkin, actionLoadSkin);
+		this.RegisterListener(EventID.TrySkin, actionTrySkin);
+	}
+	
 	private void Update() {
 		if (IsCanUpdate && !IsDead) {
 			if (Input.GetMouseButtonDown(0)) {

@@ -20,6 +20,7 @@ public class LevelManager : Singleton<LevelManager> {
     private Action<object> actionHome;
     private Action<object> actionRevive;
     private Action<object> actionAddCoin;
+    private Action<object> actionLose;
 
     #endregion
 
@@ -33,6 +34,7 @@ public class LevelManager : Singleton<LevelManager> {
         actionPlay = (param) => OnPlay();
         actionHome = (param) => Home();
         actionRevive = (param) => OnRevive();
+        actionLose = (param) => OnLose();
         actionAddCoin = (param) => {
             DataManager.Ins.Coin += player.Coin;
         };
@@ -41,6 +43,7 @@ public class LevelManager : Singleton<LevelManager> {
         this.RegisterListener(EventID.Home, actionHome);
         this.RegisterListener(EventID.Revive, actionRevive);
         this.RegisterListener(EventID.AddCoin, actionAddCoin);
+        this.RegisterListener(EventID.Lose, actionLose);
     }
 
     private void OnDisable() {
@@ -48,6 +51,7 @@ public class LevelManager : Singleton<LevelManager> {
         this.RemoveListener(EventID.Home, actionHome);
         this.RemoveListener(EventID.Revive, actionRevive);
         this.RemoveListener(EventID.AddCoin, actionAddCoin);
+        this.RemoveListener(EventID.Lose, actionLose);
     }
 
     private void OnInit() {
@@ -120,7 +124,7 @@ public class LevelManager : Singleton<LevelManager> {
                 isRevive = true;
                 UIManager.Ins.OpenUI<UIRevive>();
             } else {
-                //open ui lose
+                OnLose();
             }
         } else if (character is Bot) {
             bots.Remove(character as Bot);
@@ -164,6 +168,12 @@ public class LevelManager : Singleton<LevelManager> {
 
     private void OnRevive() {
         player.TF.position = RandomPoint();
+        player.OnRevive();
+    }
+
+    private void OnLose() {
+        UIManager.Ins.CloseAll();
+        UIManager.Ins.OpenUI<UILose>().SetCoin(player.Coin); 
     }
 
     #endregion

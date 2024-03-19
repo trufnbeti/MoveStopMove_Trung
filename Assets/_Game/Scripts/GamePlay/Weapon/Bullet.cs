@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Bullet : GameUnit
 {
-	protected Character character;
+	protected Character owner;
 	[SerializeField] protected float moveSpeed = 7f;
 
 	public virtual void OnInit(Character character, Vector3 target, float size) {
-		this.character = character;
+		this.owner = character;
 		TF.forward = (target - TF.position).normalized;
 	}
 
@@ -21,10 +21,10 @@ public class Bullet : GameUnit
 		if (other.CompareTag(GameTag.Character.ToString())) {
 			Character hit = CacheComponent.GetCharacter(other);
 			
-			if (hit != null && hit != character) {
-				character.AddScore();
+			if (hit != null && hit != owner && !hit.IsDead && !owner.IsDead) {
+				owner.AddScore();
 				SimplePool.Despawn(this);
-				hit.OnHit();
+				hit.OnHit(owner);
 			}
 		}
 

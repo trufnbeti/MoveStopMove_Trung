@@ -19,8 +19,8 @@ public class Bot : Character {
 		
 		SetMask(false);
 		ResetAnim();
-		
-		indicator.SetName(Name.GetRandomName());
+		Name = NameUtility.GetRandomName();
+		indicator.SetName(Name);
 	}
 
 	public override void OnDespawn() {

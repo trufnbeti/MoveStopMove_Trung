@@ -31,8 +31,8 @@ public class BulletBoomerang : Bullet {
                 child.Rotate(Vector3.up * -6, Space.Self);
                 break;
             case State.Backward:
-                TF.position = Vector3.MoveTowards(TF.position, character.TF.position, moveSpeed * Time.deltaTime);
-                if (character.IsDead || Vector3.Distance(TF.position, this.character.TF.position) < 0.1f) {
+                TF.position = Vector3.MoveTowards(TF.position, owner.TF.position, moveSpeed * Time.deltaTime);
+                if (owner.IsDead || Vector3.Distance(TF.position, this.owner.TF.position) < 0.1f) {
                     OnDespawn();
                 }
                 child.Rotate(Vector3.up * -6, Space.Self);

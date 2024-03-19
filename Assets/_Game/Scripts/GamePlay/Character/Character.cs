@@ -16,8 +16,13 @@ public class Character : GameUnit {
 	[SerializeField]private Vector3 targetPoint;
 
 	private int score;
-
 	protected float size = 1;
+	private string name;
+
+	public string Name {
+		get => name;
+		set => name = value;
+	}
 
 	public int Score => score;
 	public float Size => size;
@@ -78,7 +83,7 @@ public class Character : GameUnit {
 		animName = "";
 	}
 
-	public void OnHit() {
+	public virtual void OnHit(Character character) {
 		if (!IsDead) {
 			IsDead = true;
 			OnDeath();
