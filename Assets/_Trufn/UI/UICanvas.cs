@@ -70,7 +70,10 @@ public class UICanvas : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-        
+	}
+
+	public void OnBtnClick() {
+		SoundManager.Ins.Play(SoundType.Click);
 	}
 
 	//close canvas with delay time, used to anim UI action

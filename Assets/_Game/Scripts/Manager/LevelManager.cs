@@ -26,7 +26,7 @@ public class LevelManager : Singleton<LevelManager> {
     #endregion
 
     private void Start() {
-        levelIdx = 0;
+        levelIdx = DataManager.Ins.Level;
         OnLoadLevel(levelIdx);
         OnInit();
     }
@@ -41,6 +41,7 @@ public class LevelManager : Singleton<LevelManager> {
         };
         actionNextLevel = (param) => {
             levelIdx++;
+            DataManager.Ins.Level = levelIdx;
         };
         
         this.RegisterListener(EventID.Play, actionPlay);

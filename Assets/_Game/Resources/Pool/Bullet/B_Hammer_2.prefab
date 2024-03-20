@@ -194,5 +194,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 3
-  moveSpeed: 10
+  moveSpeed: 20
   child: {fileID: 6399171266029520434}

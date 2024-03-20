@@ -17,6 +17,7 @@ public class ShopBar : MonoBehaviour
 
     public void Select()
     {
+        SoundManager.Ins.Play(SoundType.Click);
         shop.SelectBar(this);
     }
 

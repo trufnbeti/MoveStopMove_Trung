@@ -26,6 +26,8 @@ public class UIMainMenu : UICanvas {
         anim.Play(ANIM_OPEN);
     }
 
+    #region BtnClick
+
     public void OnBtnPlayClick() {
         this.PostEvent(EventID.Play);
         UIManager.Ins.OpenUI<UIGameplay>();
@@ -43,5 +45,8 @@ public class UIMainMenu : UICanvas {
         UIManager.Ins.OpenUI<UIShop>();
         CloseDirectly();
     }
+
+    #endregion
+
 
 }

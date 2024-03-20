@@ -18,7 +18,6 @@ public class SwitchToggle : MonoBehaviour
 
 	private void OnEnable() {
 		handlePos = rectTransform.anchoredPosition;
-		Debug.Log(handlePos);
 		toggle.onValueChanged.AddListener(OnSwitch);
 		switch (type) {
 			case SettingType.Sound:

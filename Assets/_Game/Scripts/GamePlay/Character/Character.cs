@@ -13,7 +13,8 @@ public class Character : GameUnit {
 	private List<Character> targets = new List<Character>();
 	protected Character target;
 	
-	[SerializeField]private Vector3 targetPoint;
+	[SerializeField] private Vector3 targetPoint;
+	[SerializeField] private AudioSource audioSource;
 
 	private int score;
 	protected float size = 1;

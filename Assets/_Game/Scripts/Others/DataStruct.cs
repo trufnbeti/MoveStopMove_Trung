@@ -31,6 +31,12 @@ public enum StateButton {
 	Equipped = 2
 }
 
+public enum SoundType {
+	ThrowWeapon,
+	Click,
+	Count,
+}
+
 public enum ShopType {
 	Hat = 0,
 	Pant = 1,
