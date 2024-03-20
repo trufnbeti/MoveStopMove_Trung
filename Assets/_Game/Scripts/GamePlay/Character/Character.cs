@@ -5,8 +5,7 @@ using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class Character : GameUnit {
-	[SerializeField] Transform indicatorPoint;
-	public Target targetIndicator;
+	public Transform indicatorPoint;
 	
 	[SerializeField] GameObject mask;
 	

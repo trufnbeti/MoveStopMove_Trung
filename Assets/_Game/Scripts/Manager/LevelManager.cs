@@ -176,9 +176,7 @@ public class LevelManager : Singleton<LevelManager> {
         UIManager.Ins.OpenUI<UIWin>().SetCoin(player.Coin);
         player.ChangeAnim(Anim.win.ToString());
     }
-
-    #endregion
-
+    
     private void Home() {
         UIManager.Ins.CloseAll();
         OnReset();
@@ -186,4 +184,6 @@ public class LevelManager : Singleton<LevelManager> {
         OnInit();
         UIManager.Ins.OpenUI<UIMainMenu>();
     }
+    
+    #endregion
 }

@@ -8,11 +8,8 @@ public class Target : MonoBehaviour
 {
     [SerializeField] private Character owner;
     public string Name => owner.Name;
-
     public int Score => owner.Score;
-    
-    [SerializeField] private Transform indicatorPoint;
-    public Transform IndicatorPoint => indicatorPoint;
+    public Transform IndicatorPoint => owner.indicatorPoint;
     
     [Tooltip("Change this color to change the indicators color for this target")]
     [SerializeField] private Color targetColor = Color.red;

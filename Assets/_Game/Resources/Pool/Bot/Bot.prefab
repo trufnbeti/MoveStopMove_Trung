@@ -312,7 +312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 1
   indicatorPoint: {fileID: 9010258736875715065}
-  targetIndicator: {fileID: 2422558077112781814}
   mask: {fileID: 5629339372345741831}
   targetPoint: {x: 0, y: 0, z: 0}
   audioSource: {fileID: 1788121363839943824}
