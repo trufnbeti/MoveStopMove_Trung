@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1027,11 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e5adb7c26f43769f9885538a0269d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pool:
-  - root: {fileID: 1034310919}
-    prefab: {fileID: 1352030927810721049, guid: 30be739afc8adcb4a8a881e3e7a408c0, type: 3}
-    amount: 10
-    collect: 1
+  Pool: []
   Particle: []
 --- !u!1 &1661587453
 GameObject:
@@ -1543,7 +1539,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 0
   indicatorPoint: {fileID: 371695049}
-  targetIndicator: {fileID: 2082722321}
   mask: {fileID: 596289450}
   targetPoint: {x: 0, y: 0, z: 0}
   audioSource: {fileID: 2082722322}
@@ -1593,11 +1588,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 2082722318}
-  indicatorPoint: {fileID: 371695049}
   targetColor: {r: 1, g: 0, b: 0, a: 1}
   needBoxIndicator: 1
   needArrowIndicator: 1
-  needDistanceText: 1
+  needDistanceText: 0
   indicator: {fileID: 0}
 --- !u!82 &2082722322
 AudioSource:

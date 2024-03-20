@@ -10,6 +10,7 @@ public class CameraFollow : Singleton<CameraFollow>
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] private Transform target;
     public Camera cam;
+    private CameraState state;
     private Vector3 targetOffset;
     private Quaternion targetRotate;
 
@@ -17,8 +18,8 @@ public class CameraFollow : Singleton<CameraFollow>
         cam = Camera.main;
     }
     
-    public void SetRateOffset(float rate)
-    {
+    public void SetRateOffset(float rate) {
+        if (state != CameraState.Gameplay)  return;
         targetOffset = Vector3.Lerp(offsetMin, offsetMax, rate);
     }
 

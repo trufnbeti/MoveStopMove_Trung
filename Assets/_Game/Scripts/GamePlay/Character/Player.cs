@@ -48,7 +48,7 @@ public class Player : Character
 		OnTakeClothsData();
 		base.OnInit();
 		TF.rotation = Quaternion.Euler(Vector3.up * 180);
-		// SetSize(Constant.MIN_SIZE);
+		SetSize(Constant.MIN_SIZE);
 		Name = "YOU";
 	}
 
