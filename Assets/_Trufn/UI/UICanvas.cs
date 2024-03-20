@@ -73,7 +73,7 @@ public class UICanvas : MonoBehaviour
 	}
 
 	public void OnBtnClick() {
-		SoundManager.Ins.Play(SoundType.Click);
+		SoundManager.Ins.Play(SoundType.Click, ref SoundManager.Ins.audioSource);
 	}
 
 	//close canvas with delay time, used to anim UI action

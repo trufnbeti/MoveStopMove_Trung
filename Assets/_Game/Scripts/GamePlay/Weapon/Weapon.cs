@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
 	}
 
 	public void Throw(Character character, Vector3 target, float size) {
+		SoundManager.Ins.Play(SoundType.ThrowWeapon, ref character.audioSource);
 		Bullet bullet = SimplePool.Spawn<Bullet>(bulletType, transform.position, Quaternion.identity);
 		bullet.OnInit(character, target, size);
 		bullet.TF.localScale = size * Vector3.one;

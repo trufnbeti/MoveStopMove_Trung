@@ -14,7 +14,15 @@ public class Character : GameUnit {
 	protected Character target;
 	
 	[SerializeField] private Vector3 targetPoint;
-	[SerializeField] private AudioSource audioSource;
+
+	#region Sound
+	
+	// [SerializeField] private Sound[] audioSources;
+	[SerializeField] public AudioSource audioSource;
+	//
+	// private Dictionary<SoundType, Sound> sounds = new Dictionary<SoundType, Sound>();
+	
+	#endregion
 
 	private int score;
 	protected float size = 1;
@@ -154,6 +162,14 @@ public class Character : GameUnit {
 	
 	#endregion
 
+	#region Sound
+	
+	protected void Play(SoundType type) {
+		
+	}
+
+	#endregion
+	
 	protected void ClearTarget() {
 		targets.Clear();
 	}

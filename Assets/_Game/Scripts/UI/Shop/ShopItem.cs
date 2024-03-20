@@ -18,7 +18,7 @@ public class ShopItem : MonoBehaviour
 	private UIShop shop;
 
 	public void OnSelect() {
-		SoundManager.Ins.Play(SoundType.Click);
+		SoundManager.Ins.Play(SoundType.Click, ref SoundManager.Ins.audioSource);
 		shop.SelectItem(this);
 	}
 	

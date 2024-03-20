@@ -8,13 +8,13 @@ using UnityEngine.Serialization;
 public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField] private Sound[] audioSources;
-    [SerializeField] private AudioSource audioSource;
+    public AudioSource audioSource;
 
     private Dictionary<SoundType, Sound> sounds = new Dictionary<SoundType, Sound>();
 
     #region Sound
 
-    public void Play(SoundType type) {
+    public void Play(SoundType type, ref AudioSource audioSource) {
         if (!DataManager.Ins.IsSound)  return;
         
         if (!IsLoaded(type)) {
@@ -32,7 +32,7 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     public void SoundClick() {
-        Play(SoundType.Click);
+        Play(SoundType.Click, ref audioSource);
         VibrationsManager.instance.TriggerLightImpact();
     }
 
