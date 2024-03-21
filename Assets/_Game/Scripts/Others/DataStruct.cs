@@ -14,7 +14,8 @@ public enum EventID {
 	Revive,
 	AddCoin,
 	Lose,
-	NextLevel
+	NextLevel,
+	Dance,
 }
 
 public enum GameState {
@@ -35,6 +36,7 @@ public enum SoundType {
 	ThrowWeapon,
 	Click,
 	Count,
+	WeaponHit
 }
 
 public enum ShopType {

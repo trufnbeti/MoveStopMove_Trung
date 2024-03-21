@@ -24,6 +24,7 @@ public class CameraFollow : Singleton<CameraFollow>
     }
 
     public void ChangeState(CameraState state) {
+        this.state = state;
         targetOffset = offsets[(int)state].localPosition;
         targetRotate = offsets[(int)state].localRotation;
     }

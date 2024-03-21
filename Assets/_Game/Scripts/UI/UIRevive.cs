@@ -13,6 +13,7 @@ public class UIRevive : UICanvas
         base.Setup();
         GameManager.Ins.ChangeState(GameState.Revive);
         counter = 5;
+        StartCoroutine(Cout(counter));
     }
 
     public void OnBtnCloseClick() {
@@ -27,6 +28,13 @@ public class UIRevive : UICanvas
         this.PostEvent(EventID.Revive);
         UIManager.Ins.OpenUI<UIGameplay>();
     }
+
+    private IEnumerator Cout(float time) {
+        for (int i = 0; i < time; ++i) {
+            SoundManager.Ins.Play(SoundType.Count, ref SoundManager.Ins.audioSource);
+            yield return CacheComponent.GetWFS(1f);
+        }
+    } 
 
     private void Update() {
         if (counter > 0) {
