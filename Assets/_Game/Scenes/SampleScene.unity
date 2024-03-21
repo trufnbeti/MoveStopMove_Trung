@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -842,7 +842,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234094495}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 0.7, z: -7}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1079,11 +1079,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 29c155c7142602f48ad06efa7b3c3767, type: 3}
     volume: 1
   - type: 1
-    clip: {fileID: 8300000, guid: 3b6425a632d4cfc4b9eb26a34e55071c, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 5d4dd3bece804aa4299aa76d529c9394, type: 3}
+    volume: 0.5
   - type: 2
     clip: {fileID: 8300000, guid: fc6e52864f743e140b6ae3631dbb6cff, type: 3}
     volume: 1
+  - type: 3
+    clip: {fileID: 8300000, guid: 903b01ec49463e945a97015f8f29b96d, type: 3}
+    volume: 1
+  - type: 4
+    clip: {fileID: 8300000, guid: 16b52ebdd0399bc4a895304229d1ef43, type: 3}
+    volume: 0.5
   audioSource: {fileID: 1661587456}
 --- !u!82 &1661587456
 AudioSource:

@@ -36,7 +36,8 @@ public enum SoundType {
 	ThrowWeapon,
 	Click,
 	Count,
-	WeaponHit
+	WeaponHit,
+	VoiceDead,
 }
 
 public enum ShopType {
