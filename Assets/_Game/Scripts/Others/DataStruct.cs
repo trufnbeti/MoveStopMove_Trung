@@ -64,7 +64,7 @@ public enum SettingType {
 }
 
 public enum ParticleType {
-	
+	SizeUp
 }
 
 public enum PoolType {
