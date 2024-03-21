@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fe394bf123094428c6ead4a8a32054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 5
   child: {fileID: 6373832990764767362}
   bulletType: 5
 --- !u!1 &6373832990764767362
@@ -110,7 +109,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9687c2665edcff249962bb1b24ffcfb5, type: 2}
-  - {fileID: 2100000, guid: 2f8b07ac81db57a41b8f6d6d2c27d5c2, type: 2}
+  - {fileID: 2100000, guid: f2eb04316f070f74eb89e40b5a08bed3, type: 2}
   - {fileID: 2100000, guid: d313e779cffc3154b859df1b9e40e7dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

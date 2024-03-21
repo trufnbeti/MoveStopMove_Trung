@@ -1051,7 +1051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547569412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1641,6 +1641,7 @@ MonoBehaviour:
   currentSkin: {fileID: 0}
   rb: {fileID: 2082722320}
   moveSpeed: 5
+  vfxPoint: {fileID: 1547569413}
   skinType: 20
 --- !u!136 &2082722319
 CapsuleCollider:

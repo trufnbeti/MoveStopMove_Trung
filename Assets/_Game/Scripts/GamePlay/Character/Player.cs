@@ -7,6 +7,8 @@ public class Player : Character
 {
 	[SerializeField] private Rigidbody rb;
 	[SerializeField] private float moveSpeed;
+	[SerializeField] private Transform vfxPoint;
+	
 	private DynamicJoystick joystick;
 
 	public DynamicJoystick Joystick {
@@ -154,7 +156,7 @@ public class Player : Character
 		base.SetSize(size);
 		if (this.size > 1) {
 			SoundManager.Ins.Play(SoundType.SizeUp, ref audioSource);
-			ParticlePool.Play(ParticleType.SizeUp, TF.position);
+			ParticlePool.Play(ParticleType.SizeUp, vfxPoint.position);
 		}
 		CameraFollow.Ins.SetRateOffset((this.size - Constant.MIN_SIZE) / (Constant.MAX_SIZE - Constant.MIN_SIZE));
 	}
