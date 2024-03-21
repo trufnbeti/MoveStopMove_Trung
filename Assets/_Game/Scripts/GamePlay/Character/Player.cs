@@ -154,7 +154,7 @@ public class Player : Character
 		base.SetSize(size);
 		if (this.size > 1) {
 			SoundManager.Ins.Play(SoundType.SizeUp, ref audioSource);
-			ParticlePool.Play(ParticleType.SizeUp, TF.position, Quaternion.Euler(new Vector3(-90, 0 ,0)));
+			ParticlePool.Play(ParticleType.SizeUp, TF.position);
 		}
 		CameraFollow.Ins.SetRateOffset((this.size - Constant.MIN_SIZE) / (Constant.MAX_SIZE - Constant.MIN_SIZE));
 	}

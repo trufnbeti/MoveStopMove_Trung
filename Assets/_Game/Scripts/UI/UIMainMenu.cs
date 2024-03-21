@@ -15,6 +15,7 @@ public class UIMainMenu : UICanvas {
         base.Setup();
         imgSoundOff.gameObject.SetActive(!DataManager.Ins.IsSound);
         imgVibrateOn.gameObject.SetActive(DataManager.Ins.IsVibrate);
+        SoundManager.Ins.StopAllEfxSound();
     }
 
     public override void Open() {

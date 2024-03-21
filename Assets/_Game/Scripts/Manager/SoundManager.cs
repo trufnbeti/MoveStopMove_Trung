@@ -31,7 +31,7 @@ public class SoundManager : Singleton<SoundManager>
         audioSource.Stop();
     }
 
-    public void SoundClick() {
+    public void PlaySoundClick(ref AudioSource audioSource) {
         Play(SoundType.Click, ref audioSource);
         VibrationsManager.instance.TriggerLightImpact();
     }
