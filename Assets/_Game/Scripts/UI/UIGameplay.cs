@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIGameplay : UICanvas
 {
     [SerializeField] private Text characterAmount;
+    [SerializeField] private DynamicJoystick joystick;
     
     #region Event
 
@@ -18,6 +19,7 @@ public class UIGameplay : UICanvas
         base.Setup();
         actionCharacterDeath = (param) => UpdateAmount();
         UpdateAmount();
+        LevelManager.Ins.player.Joystick = joystick;
     }
 
     public override void Open() {

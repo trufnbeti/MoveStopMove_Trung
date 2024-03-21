@@ -1558,6 +1558,7 @@ MonoBehaviour:
   targetPoint: {x: 0, y: 0, z: 0}
   audioSource: {fileID: 2082722322}
   currentSkin: {fileID: 0}
+  rb: {fileID: 2082722320}
   moveSpeed: 5
   skinType: 20
 --- !u!136 &2082722319

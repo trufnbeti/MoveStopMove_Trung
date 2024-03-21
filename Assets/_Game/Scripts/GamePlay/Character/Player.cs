@@ -5,7 +5,15 @@ using UnityEngine;
 
 public class Player : Character
 {
+	[SerializeField] private Rigidbody rb;
 	[SerializeField] private float moveSpeed;
+	private DynamicJoystick joystick;
+
+	public DynamicJoystick Joystick {
+		set {
+			joystick = value;
+		}
+	}
 	private CounterTime counter = new CounterTime();
 	private bool IsCanUpdate => GameManager.Ins.IsState(GameState.Gameplay);
 	private bool isMoving = false;
@@ -20,10 +28,10 @@ public class Player : Character
 	public Character Attacker => attacker;
 
 	public int Coin => Score * 10;
-
 	private int ranking;
-
 	public int Ranking => ranking;
+
+	private Vector3 direct;
 	
 	#region Event
 
@@ -162,9 +170,12 @@ public class Player : Character
 				counter.Cancel();
 			}
 
-			if (Input.GetMouseButton(0) && Vector3.Distance(JoystickControl.direct, Vector3.zero) > 0.1f) {
-				TF.position += JoystickControl.direct * moveSpeed * Time.deltaTime;
-				TF.forward = JoystickControl.direct;
+			direct = new Vector3(joystick.Horizontal, 0, joystick.Vertical).normalized;
+			
+			if (Input.GetMouseButton(0) && Vector3.Distance(direct, Vector3.zero) > 0.1f) {
+				rb.MovePosition(rb.position + direct * moveSpeed * Time.deltaTime);
+				TF.position = rb.position;
+				TF.forward = direct;
 				ChangeAnim(Anim.run.ToString());
 				isMoving = true;
 			} else {
