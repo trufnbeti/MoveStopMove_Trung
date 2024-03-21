@@ -38,4 +38,12 @@ public class ShopItem : MonoBehaviour
 		stateObjects[(int)state].SetActive(true);
 		this.state = state;
 	}
+
+	public void Equip() {
+		
+	}
+
+	public void Selecting() {
+		
+	}
 }
