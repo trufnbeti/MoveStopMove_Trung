@@ -87,6 +87,7 @@ public class Character : GameUnit {
 
 	public virtual void OnHit(Character character) {
 		if (!IsDead) {
+			SoundManager.Ins.Play(SoundType.WeaponHit, ref audioSource);
 			IsDead = true;
 			OnDeath();
 		}
