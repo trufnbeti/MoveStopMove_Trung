@@ -76,6 +76,13 @@ public class Player : Character
 		counter.Cancel();
 	}
 
+	public override void OnStopMove() {
+		base.OnStopMove();
+		rb.velocity = Vector3.zero;
+	}
+
+	#region Skin
+	
 	private void OnTakeClothsData() {
 		skinType = DataManager.Ins.IdSkin;
 		weaponType = DataManager.Ins.IdWeapon;
@@ -84,7 +91,6 @@ public class Player : Character
 		pantType = DataManager.Ins.IdPant;
 	}
 
-	#region Skin
 	protected override void WearClothes() {
 		base.WearClothes(); 
 
@@ -173,8 +179,9 @@ public class Player : Character
 			direct = new Vector3(joystick.Horizontal, 0, joystick.Vertical).normalized;
 			
 			if (Input.GetMouseButton(0) && Vector3.Distance(direct, Vector3.zero) > 0.1f) {
-				rb.MovePosition(rb.position + direct * moveSpeed * Time.deltaTime);
-				TF.position = rb.position;
+				// rb.MovePosition(rb.position + direct * moveSpeed);
+				rb.velocity = direct * moveSpeed;
+				// TF.position = rb.position;
 				TF.forward = direct;
 				ChangeAnim(Anim.run.ToString());
 				isMoving = true;
