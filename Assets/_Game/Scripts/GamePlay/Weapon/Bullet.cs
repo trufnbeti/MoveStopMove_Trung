@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.NiceVibrations;
 using UnityEngine;
 
 public class Bullet : GameUnit
@@ -22,10 +23,14 @@ public class Bullet : GameUnit
 			Character hit = CacheComponent.GetCharacter(other);
 			
 			if (hit != null && hit != owner && !hit.IsDead && !owner.IsDead) {
+				if (owner is Player || hit is Player) {
+					VibrationsManager.instance.TriggerMediumImpact();
+				}
 				owner.AddScore();
 				SimplePool.Despawn(this);
 				hit.OnHit(owner);
 			}
+			
 		}
 
 	}
