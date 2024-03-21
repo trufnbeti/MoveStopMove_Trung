@@ -38,6 +38,9 @@ public enum SoundType {
 	Count,
 	WeaponHit,
 	VoiceDead,
+	SizeUp,
+	Lose,
+	Win,
 }
 
 public enum ShopType {

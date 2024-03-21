@@ -9,6 +9,7 @@ public class UIWin : UICanvas
 
     public override void Open() {
         base.Open();
+        SoundManager.Ins.Play(SoundType.Win, ref SoundManager.Ins.audioSource);
         GameManager.Ins.ChangeState(GameState.Finish);
     }
 

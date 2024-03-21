@@ -13,7 +13,16 @@ public class UIRevive : UICanvas
         base.Setup();
         GameManager.Ins.ChangeState(GameState.Revive);
         counter = 5;
+    }
+
+    public override void Open() {
+        base.Open();
         StartCoroutine(Cout(counter));
+    }
+
+    public override void CloseDirectly() {
+        base.CloseDirectly();
+        StopCoroutine(Cout(counter));
     }
 
     public void OnBtnCloseClick() {

@@ -138,6 +138,9 @@ public class Player : Character
 
 	protected override void SetSize(float size) {
 		base.SetSize(size);
+		if (this.size > 1) {
+			SoundManager.Ins.Play(SoundType.SizeUp, ref audioSource);
+		}
 		CameraFollow.Ins.SetRateOffset((this.size - Constant.MIN_SIZE) / (Constant.MAX_SIZE - Constant.MIN_SIZE));
 	}
 

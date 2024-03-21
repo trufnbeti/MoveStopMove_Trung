@@ -13,6 +13,7 @@ public class UILose : UICanvas
         base.Setup();
         nameTxt.text = LevelManager.Ins.player.Attacker.Name;
         rankingTxt.text = "#" + LevelManager.Ins.player.Ranking;
+        SoundManager.Ins.Play(SoundType.Lose, ref SoundManager.Ins.audioSource);
     }
 
     public override void Open() {
