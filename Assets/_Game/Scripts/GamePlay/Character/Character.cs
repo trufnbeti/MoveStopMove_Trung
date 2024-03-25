@@ -15,10 +15,7 @@ public class Character : GameUnit {
 
 	#region Sound
 	
-	// [SerializeField] private Sound[] audioSources;
-	[SerializeField] public AudioSource audioSource;
-	//
-	// private Dictionary<SoundType, Sound> sounds = new Dictionary<SoundType, Sound>();
+	public AudioSource audioSource;
 	
 	#endregion
 
@@ -160,14 +157,6 @@ public class Character : GameUnit {
 		currentSkin.ChangePant(index);
 	}
 	
-	#endregion
-
-	#region Sound
-	
-	protected void Play(SoundType type) {
-		
-	}
-
 	#endregion
 	
 	protected void ClearTarget() {
