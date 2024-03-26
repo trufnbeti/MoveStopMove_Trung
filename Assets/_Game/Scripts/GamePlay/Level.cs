@@ -19,6 +19,6 @@ public class Level : MonoBehaviour
         NavMesh.SamplePosition(randPoint, out hit, float.PositiveInfinity, NavMesh.AllAreas);
         randPoint = hit.position;
 
-        return randPoint;
+        return randPoint + Vector3.up;
     }
 }

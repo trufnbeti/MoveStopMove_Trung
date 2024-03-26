@@ -87,7 +87,7 @@ public class LevelManager : Singleton<LevelManager> {
     }
 
     public Vector3 RandomPoint() {
-        Vector3 randPoint = Vector3.zero;
+        Vector3 randPoint = Vector3.up;
         float size = Constant.ATT_RANGE + Constant.MAX_SIZE + 1f;
         do {
             randPoint = currentLevel.RandomPoint();
@@ -142,6 +142,7 @@ public class LevelManager : Singleton<LevelManager> {
 
     private void SpawnBot(IState<Bot> state) {
         Bot bot = SimplePool.Spawn<Bot>(PoolType.Bot, RandomPoint(), Quaternion.identity);
+        Debug.Log(bot.TF.position);
         bot.OnInit();
         bot.ChangeState(state);
         bots.Add(bot);
