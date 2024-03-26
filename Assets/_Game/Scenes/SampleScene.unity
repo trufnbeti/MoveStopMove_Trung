@@ -1428,6 +1428,7 @@ MonoBehaviour:
     isMusic: 1
     isSound: 1
     isVibrate: 1
+    name: YOU
     coin: 20000
     level: 0
     idSkin: 0

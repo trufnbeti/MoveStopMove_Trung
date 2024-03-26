@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Character
@@ -37,6 +38,7 @@ public class Player : Character
 	
 	#region Event
 
+	private Action<object> actionPlay;
 	private Action<object> actionLoadSkin;
 	private Action<object> actionTrySkin;
 
@@ -49,6 +51,9 @@ public class Player : Character
 			WearClothes();
 		};
 		actionTrySkin = (param) => TryCloth((TrySkin)param);
+		actionPlay = (param) => {
+			Name = DataManager.Ins.Name;
+		};
 
 	}
 
@@ -59,7 +64,6 @@ public class Player : Character
 		base.OnInit();
 		TF.rotation = Quaternion.Euler(Vector3.up * 180);
 		SetSize(Constant.MIN_SIZE);
-		Name = "YOU";
 	}
 
 	public override void OnHit(Character character) {
@@ -71,6 +75,7 @@ public class Player : Character
 	}
 
 	public override void OnDeath() {
+		this.RemoveListener(EventID.Play, actionPlay);
 		this.RemoveListener(EventID.LoadSkin, actionLoadSkin);
 		this.RemoveListener(EventID.TrySkin, actionTrySkin);
 
@@ -169,6 +174,7 @@ public class Player : Character
 	}
 
 	private void OnReset() {
+		this.RegisterListener(EventID.Play, actionPlay);
 		this.RegisterListener(EventID.LoadSkin, actionLoadSkin);
 		this.RegisterListener(EventID.TrySkin, actionTrySkin);
 	}

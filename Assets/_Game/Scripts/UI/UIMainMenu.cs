@@ -10,9 +10,11 @@ public class UIMainMenu : UICanvas {
     [SerializeField] private Animation anim;
     [SerializeField] private Image imgSoundOff;
     [SerializeField] private Image imgVibrateOn;
+    [SerializeField] private InputField inputField;
 
     public override void Setup() {
         base.Setup();
+        inputField.text = DataManager.Ins.Name;
         imgSoundOff.gameObject.SetActive(!DataManager.Ins.IsSound);
         imgVibrateOn.gameObject.SetActive(DataManager.Ins.IsVibrate);
         SoundManager.Ins.StopAllEfxSound();
@@ -49,5 +51,8 @@ public class UIMainMenu : UICanvas {
 
     #endregion
 
+    public void OnChangeName() {
+        DataManager.Ins.Name = inputField.text;
+    }
 
 }

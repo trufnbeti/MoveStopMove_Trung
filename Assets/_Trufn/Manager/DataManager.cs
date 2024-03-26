@@ -22,11 +22,11 @@ public class DataManager : Singleton<DataManager>
     // private void OnApplicationQuit() { SaveData(); FirebaseManager.Ins.OnSetUserProperty();  }
     
     //cache string
-    private const string WEAPON_TYPE = "WeaponType";
-    private const string SKIN_TYPE = "SkinType";
-    private const string HAT_TYPE = "HatType";
-    private const string ACC_TYPE = "AccessoryType";
-    private const string PANT_TYPE = "PantType";
+    // private const string WEAPON_TYPE = "WeaponType";
+    // private const string SKIN_TYPE = "SkinType";
+    // private const string HAT_TYPE = "HatType";
+    // private const string ACC_TYPE = "AccessoryType";
+    // private const string PANT_TYPE = "PantType";
     
     private void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -52,6 +52,14 @@ public class DataManager : Singleton<DataManager>
     }
 
     #region Get set data
+
+    public string Name {
+        set {
+            playerData.name = value.Length > 0 ? value : "YOU";
+            SaveData();
+        }
+        get => playerData.name;
+    }
     
     public int Coin {
         set {
@@ -269,7 +277,7 @@ public class DataManagerEditor : Editor
 #endif
 
 
-[System.Serializable]
+[Serializable]
 public class PlayerData {
     [Header("--------- Game Setting ---------")]
     public bool isNew = true;
@@ -282,6 +290,7 @@ public class PlayerData {
 
 
     [Header("--------- Game Params ---------")]
+    public string name = "YOU";
     public int coin = 20000;
     // public int cup = 0;
     public int level = 0;//Level hiện tại

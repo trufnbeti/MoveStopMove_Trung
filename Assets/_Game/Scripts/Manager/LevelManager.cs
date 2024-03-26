@@ -142,7 +142,6 @@ public class LevelManager : Singleton<LevelManager> {
 
     private void SpawnBot(IState<Bot> state) {
         Bot bot = SimplePool.Spawn<Bot>(PoolType.Bot, RandomPoint(), Quaternion.identity);
-        Debug.Log(bot.TF.position);
         bot.OnInit();
         bot.ChangeState(state);
         bots.Add(bot);
