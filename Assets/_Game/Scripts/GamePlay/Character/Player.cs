@@ -151,7 +151,7 @@ public class Player : Character
 		base.AddTarget(target);
 		if (!target.IsDead && !IsDead) {
 			target.SetMask(true);
-			if (counter.IsRunning && !isMoving) { //dang dung im thi co thang di vao
+			if (!counter.IsRunning && !isMoving) { //dang dung im thi co thang di vao
 				OnAttack();
 			}
 		}
@@ -188,9 +188,7 @@ public class Player : Character
 			direct = new Vector3(joystick.Horizontal, 0, joystick.Vertical).normalized;
 			
 			if (Input.GetMouseButton(0) && Vector3.Distance(direct, Vector3.zero) > 0.1f) {
-				// rb.MovePosition(rb.position + direct * moveSpeed);
 				rb.velocity = direct * moveSpeed;
-				// TF.position = rb.position;
 				TF.forward = direct;
 				ChangeAnim(Anim.run.ToString());
 				isMoving = true;
