@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = System.Random;
 
 public class Bot : Character {
 	[SerializeField] private NavMeshAgent agent;
@@ -37,11 +39,11 @@ public class Bot : Character {
 	protected override void WearClothes() {
 		base.WearClothes();
 
-		ChangeSkin(0);
-		ChangeWeapon(0);
-		ChangeHat(0);
-		ChangeAccessory(0);
-		ChangePant(0);
+		ChangeSkin((int)GetRandomValue<SkinType>());
+		ChangeHat((int)GetRandomValue<HatType>());
+		ChangeAccessory((int)GetRandomValue<AccessoryType>());
+		ChangePant((int)GetRandomValue<PantType>());
+		ChangeWeapon(UnityEngine.Random.Range(0, SkinManager.Ins.weaponData.TotalWeapon));
 	}
 	
 	public void SetDestination(Vector3 point) {
@@ -79,6 +81,13 @@ public class Bot : Character {
 	private IEnumerator WaitForDespawn(float time) {
 		yield return CacheComponent.GetWFS(time);
 		OnDespawn();
+	}
+
+	private T GetRandomValue<T>() where T : Enum {
+		Array enumValues = Enum.GetValues(typeof(T));
+		Random random = new Random();
+		T randomEnumValue = (T)enumValues.GetValue(random.Next(enumValues.Length));
+		return randomEnumValue;
 	}
 	
 	private void Update() {

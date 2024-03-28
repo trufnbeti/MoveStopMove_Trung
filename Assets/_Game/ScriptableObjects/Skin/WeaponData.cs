@@ -8,6 +8,7 @@ public class WeaponData : ScriptableObject
 {
 	[SerializeField] private List<WeaponItem> weaponItems;
 	
+	public int TotalWeapon => weaponItems.Count;
 	public Weapon GetWeapon(int index) {
 		return GetWeaponItem(index).weapon;
 	}
@@ -23,6 +24,7 @@ public class WeaponData : ScriptableObject
 	public int PrevWeaponIdx(int index) {
 		return index == 0 ? weaponItems.Count - 1 : index - 1;
 	}
+
 }
 
 [System.Serializable]

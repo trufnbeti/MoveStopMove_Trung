@@ -12,7 +12,7 @@ public class ShopData : ScriptableObject {
 	public ShopItemDatas<SkinType> skins;
 }
 
-[System.Serializable]
+[Serializable]
 public class ShopItemDatas<T> where T: System.Enum {
 	[SerializeField] List<ShopItemData<T>> list;
 	public List<ShopItemData<T>> List => list;
