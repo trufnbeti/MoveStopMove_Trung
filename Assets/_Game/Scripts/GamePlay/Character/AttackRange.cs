@@ -9,7 +9,7 @@ public class AttackRange : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag(GameTag.Character.ToString())) {
             Character target = CacheComponent.GetCharacter(other);
-            if (!target.IsDead) {
+            if (!target.IsDead && !character.IsDead) {
                 character.AddTarget(target);
             }
         }

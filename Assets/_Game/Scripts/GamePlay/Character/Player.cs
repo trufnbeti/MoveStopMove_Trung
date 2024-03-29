@@ -64,7 +64,6 @@ public class Player : Character
 		OnTakeClothsData();
 		base.OnInit();
 		TF.rotation = Quaternion.Euler(Vector3.up * 180);
-		SetSize(Constant.MIN_SIZE);
 	}
 
 	public override void OnHit(Character character) {
@@ -142,7 +141,7 @@ public class Player : Character
 
 	public override void OnAttack() {
 		base.OnAttack();
-		if (target != null && currentSkin.Weapon.IsCanAttack) {
+		if (target != null && !target.IsDead && IsCanAttack) {
 			counter.Start(Throw, Constant.TIME_DELAY_THROW);
 			ResetAnim();
 		}
@@ -151,7 +150,6 @@ public class Player : Character
 	public override void AddTarget(Character target) {
 		base.AddTarget(target);
 		if (!target.IsDead && !IsDead) {
-			target.SetMask(true);
 			if (!counter.IsRunning && !isMoving) { //dang dung im thi co thang di vao
 				OnAttack();
 			}
@@ -180,7 +178,11 @@ public class Player : Character
 		this.RegisterListener(EventID.TrySkin, actionTrySkin);
 	}
 	
-	private void Update() {
+	protected override void Update() {
+		base.Update();
+		if (target != null) {
+			SetMask();
+		}
 		if (IsCanUpdate && !IsDead) {
 			if (Input.GetMouseButtonDown(0)) {
 				counter.Cancel();

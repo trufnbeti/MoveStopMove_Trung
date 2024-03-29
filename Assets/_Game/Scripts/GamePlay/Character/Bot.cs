@@ -90,7 +90,8 @@ public class Bot : Character {
 		return randomEnumValue;
 	}
 	
-	private void Update() {
+	protected override void Update() {
+		base.Update();
 		if (IsCanRunning && currentState != null && !IsDead) {
 			currentState.OnExecute(this);
 		}

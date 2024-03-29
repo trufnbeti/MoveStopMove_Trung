@@ -6,7 +6,7 @@ using UnityEngine;
 public class Character : GameUnit {
 	public Transform indicatorPoint;
 	
-	[SerializeField] GameObject mask;
+	[SerializeField] private GameObject mask;
 	
 	private List<Character> targets = new List<Character>();
 	protected Character target;
@@ -29,7 +29,6 @@ public class Character : GameUnit {
 	}
 
 	public int Score => score;
-	public float Size => size;
 	public bool IsDead { get; protected set; }
 
 	[SerializeField] protected Skin currentSkin;
@@ -39,7 +38,7 @@ public class Character : GameUnit {
 
 	public virtual void OnInit() {
 		IsDead = false;
-		score = 0;
+		SetScore(0);
 		
 		WearClothes();
 		ClearTarget();
@@ -86,7 +85,7 @@ public class Character : GameUnit {
 
 	public virtual void OnHit(Character character) {
 		if (!IsDead) {
-			SoundManager.Ins.Play(SoundType.WeaponHit, ref audioSource);{}
+			SoundManager.Ins.Play(SoundType.WeaponHit, ref audioSource);
 			SoundManager.Ins.Play(SoundType.VoiceDead, ref audioSource);
 			IsDead = true;
 			OnDeath();
@@ -94,14 +93,11 @@ public class Character : GameUnit {
 	}
 
 	public virtual void OnAttack() {
-		target = GetTargetInRange();
-
 		if (IsCanAttack && target != null && !target.IsDead) {
 			targetPoint = target.TF.position;
 			targetPoint.y = TF.position.y;
 			TF.LookAt(targetPoint);
 			ChangeAnim(Anim.attack.ToString());
-			
 		}
 	}
 	
@@ -164,6 +160,15 @@ public class Character : GameUnit {
 	protected void ClearTarget() {
 		targets.Clear();
 	}
+
+	protected void SetMask() {
+		for (int i = 0; i < targets.Count; ++i) {
+			targets[i].SetMask(false);
+			if (target == targets[i]) {
+				target.SetMask(true);
+			}
+		}
+	}
 	
 
 	private Character GetTargetInRange() {
@@ -182,5 +187,9 @@ public class Character : GameUnit {
 		}
 
 		return res;
+	}
+
+	protected virtual void Update() {
+		target = GetTargetInRange();
 	}
 }

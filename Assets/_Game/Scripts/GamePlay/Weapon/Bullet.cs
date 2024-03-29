@@ -10,7 +10,7 @@ public class Bullet : GameUnit
 	[SerializeField] protected float moveSpeed = 7f;
 
 	public virtual void OnInit(Character character, Vector3 target, float size) {
-		this.owner = character;
+		owner = character;
 		TF.forward = (target - TF.position).normalized;
 	}
 
@@ -36,7 +36,7 @@ public class Bullet : GameUnit
 					}
 				}
 				
-				SimplePool.Despawn(this);
+				OnDespawn();
 			}
 			
 		}

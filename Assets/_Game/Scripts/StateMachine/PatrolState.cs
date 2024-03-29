@@ -5,7 +5,7 @@ using UnityEngine;
 public class PatrolState : IState<Bot>
 {
 	public void OnEnter(Bot t) {
-		t.SetDestination(LevelManager.Ins.currentLevel.RandomPoint());
+		t.SetDestination(LevelManager.Ins.currentLevel.RandomPos());
 	}
 
 	public void OnExecute(Bot t) {

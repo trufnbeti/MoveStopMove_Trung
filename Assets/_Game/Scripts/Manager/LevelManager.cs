@@ -90,7 +90,7 @@ public class LevelManager : Singleton<LevelManager> {
         Vector3 randPoint = Vector3.up;
         float size = Constant.ATT_RANGE + Constant.MAX_SIZE + 1f;
         do {
-            randPoint = currentLevel.RandomPoint();
+            randPoint = currentLevel.RandomPos();
             if (Vector3.Distance(randPoint, player.TF.position) < size) {
                 continue;
             }
@@ -146,7 +146,7 @@ public class LevelManager : Singleton<LevelManager> {
         bot.ChangeState(state);
         bots.Add(bot);
         
-        bot.SetScore(player.Score > 0 ? Random.Range(player.Score - 2, player.Score + 2) : 1);
+        bot.SetScore(player.Score > 0 ? Random.Range(player.Score - 2, player.Score + 2 + 1) : 1);
     }
 
     #region Using Event
