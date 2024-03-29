@@ -304,7 +304,7 @@ public class PlayerData {
     // true, true, true, true, true, true, true, 
     // true, true, true, true, true, true, true, true, true, true};
     public int[] skinStatus = new int[]{ 2, 0, 0, 0, 0, 0 };
-    public int[] hatStatus = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] hatStatus = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] pantStatus = new int[] { 2, 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] weaponStatus = new int[] { 2, 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] accessoryStatus = new int[] { 0, 0, 0, 0, 0 };

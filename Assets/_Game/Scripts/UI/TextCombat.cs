@@ -1,18 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
-public class TextCombat : MonoBehaviour
+public class TextCombat : GameUnit
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] private Text distanceTxt;
+    [SerializeField] private Text scoreTxt;
+
+    public void OnInit(int score, float distance, bool isScale) {
+        scoreTxt.text = "+" + score;
+        if (isScale) {
+            distanceTxt.gameObject.SetActive(true);
+            distanceTxt.text = distance + "m";
+        }
+        StartCoroutine(WaitForDespawn(Constant.TIME_TEXT_COMBAT));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private IEnumerator WaitForDespawn(float time) {
+        yield return CacheComponent.GetWFS(time);
+        OnDespawn();
+    }
+
+    private void OnDespawn() {
+        distanceTxt.gameObject.SetActive(false);
+        SimplePool.Despawn(this);
     }
 }

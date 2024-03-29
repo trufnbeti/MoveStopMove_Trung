@@ -81,6 +81,8 @@ public enum PoolType {
 	Bullet_Boomerang_1 = 8,
 	Bullet_Boomerang_2 = 9,
 	Bullet_Boomerang_3 = 10,
+	
+	TextCombat = 11,
 }
 
 public enum Anim {
@@ -127,6 +129,9 @@ public enum HatType {
 	Headphone = 7,
 	Horn = 8,
 	Police = 9,
+	Beard = 10,
+	Flower = 11,
+	Hair = 12,
 }
 
 public enum SkinType {
