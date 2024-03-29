@@ -69,7 +69,9 @@ public class Character : GameUnit {
 	
 	public void SetScore(int score) {
 		this.score = score > 0 ? score : 0;
-		SetSize(1 + this.score * 0.1f);
+		if (this.score % 2 == 0) {
+			SetSize(1 + this.score / 2 * 0.1f);
+		}
 	}
 	
 	protected virtual void SetSize(float size) {
@@ -84,7 +86,7 @@ public class Character : GameUnit {
 
 	public virtual void OnHit(Character character) {
 		if (!IsDead) {
-			SoundManager.Ins.Play(SoundType.WeaponHit, ref audioSource);
+			SoundManager.Ins.Play(SoundType.WeaponHit, ref audioSource);{}
 			SoundManager.Ins.Play(SoundType.VoiceDead, ref audioSource);
 			IsDead = true;
 			OnDeath();

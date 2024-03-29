@@ -17,6 +17,7 @@ public class Player : Character
 			joystick = value;
 		}
 	}
+    
 	private CounterTime counter = new CounterTime();
 	private bool IsCanUpdate => GameManager.Ins.IsState(GameState.Gameplay);
 	private bool isMoving = false;
