@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 7
-  moveSpeed: 16
+  moveSpeed: 14
 --- !u!1 &8032482583914748609
 GameObject:
   m_ObjectHideFlags: 0

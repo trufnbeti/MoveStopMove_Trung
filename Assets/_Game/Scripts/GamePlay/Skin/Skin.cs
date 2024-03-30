@@ -6,7 +6,6 @@ using UnityEngine;
 public class Skin : MonoBehaviour
 {
 	[Header("References")]
-	[SerializeField] private PantData pantData;
 
 	[SerializeField] private Transform head;
 	[SerializeField] private Transform rightHand;

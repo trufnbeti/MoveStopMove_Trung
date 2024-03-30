@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -198,10 +198,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b112818aa60ea942a93c6a10dac3392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hatData: {fileID: 11400000, guid: 548b8a0d813389147aa4de8407a6059d, type: 2}
-  accessoryData: {fileID: 11400000, guid: dd920b9653bb69643b339812caa72779, type: 2}
-  pantData: {fileID: 11400000, guid: f25f0b06b6fa69e41979441df4490254, type: 2}
-  skinData: {fileID: 11400000, guid: 39bdfef394cbba84e892af0d4ff4cc50, type: 2}
+  hatData:
+    prefabs:
+    - {fileID: 0}
+    - {fileID: 2695153806111675121, guid: 8031e4b1890e05941a146435938d30d6, type: 3}
+    - {fileID: 5696844747126061984, guid: bab1d691e542b7647a4cb2852645bbbd, type: 3}
+    - {fileID: -7706547851386169535, guid: 486026e0c8ce14d43b9c500e01dc1786, type: 3}
+    - {fileID: 1773325952591252021, guid: 2904bf2896730f047b8d439552228b4a, type: 3}
+    - {fileID: -4730530504556326354, guid: b30e0ac4d37bfb24eaae29ae22f175ef, type: 3}
+    - {fileID: 3849513169463227330, guid: 74bdcbbb13ae58c4bb995b3984e32ce7, type: 3}
+    - {fileID: -7935258614042809513, guid: 20b2dcc9423e5d14f82c506c7cf8cffb, type: 3}
+    - {fileID: 1206343594683524162, guid: a8e7a28dfdf926b45935a22f02afad26, type: 3}
+    - {fileID: 108206393173385182, guid: 6c89744339292b64ca4196891c4bd963, type: 3}
+    - {fileID: -3924704295893214688, guid: 2870d9c32e2547a4a9a315b03fbe7e2c, type: 3}
+    - {fileID: 8619030449895150321, guid: 6afd87e22554d7945a662ce8568052c3, type: 3}
+    - {fileID: 5235422651783985485, guid: a84b765d977ca9943af4dc5dd93ee75b, type: 3}
+  accessoryData:
+    prefabs:
+    - {fileID: 0}
+    - {fileID: -7619795965475364491, guid: 521ed61bd7001034c84b3ef16dcc5437, type: 3}
+    - {fileID: 3063663520804920726, guid: 57befd699a79ec04a96a77a854d130ec, type: 3}
+    - {fileID: 8742149492930400982, guid: 5425c360fd2d02e44b5d36cae253884e, type: 3}
+    - {fileID: 6978958092900250522, guid: 7cb35190dde43ee46b3143e0218a3047, type: 3}
+  pantData:
+    prefabs:
+    - {fileID: 2100000, guid: d1742f115122c0045842c337ee221c51, type: 2}
+    - {fileID: 2100000, guid: 5a78d65f8ca458e428a6e23b587ccd4c, type: 2}
+    - {fileID: 2100000, guid: 6f00084d8c0023045908e959a13638da, type: 2}
+    - {fileID: 2100000, guid: f315b9524d10fe14eb23d6d6ce485319, type: 2}
+    - {fileID: 2100000, guid: 0b7b7407d98bf744c821246cf21791ad, type: 2}
+    - {fileID: 2100000, guid: bb854d2bafe88354a82773f5b8bec071, type: 2}
+    - {fileID: 2100000, guid: fcab97a16d610284c9441f137aaa2cc6, type: 2}
+    - {fileID: 2100000, guid: a6fcb245c3619834e99cbfbdb4a4e9e1, type: 2}
+    - {fileID: 2100000, guid: 7ccf083245eb3f842b302935e83e66b2, type: 2}
+  skinData:
+    prefabs:
+    - {fileID: 5703299409039722698, guid: ddb6369c4d7f88142a5b20c9999eb093, type: 3}
+    - {fileID: 5703299409039722698, guid: b9f64287cb5c9f34dac7b89c0d73c511, type: 3}
+    - {fileID: 5703299409039722698, guid: 7bac7d9bbbe1bd74a9d0ebec773c5dd5, type: 3}
+    - {fileID: 5703299409039722698, guid: fea418d6f4d59854f8c9a6d285ff53ae, type: 3}
+    - {fileID: 5703299409039722698, guid: 0ff3f1905b46392489b28ebb26092871, type: 3}
+    - {fileID: 5703299409039722698, guid: ed26c35cb06b7b44b91538d1161b85aa, type: 3}
   weaponData: {fileID: 11400000, guid: f021d872de239f245ba47afc14affb7a, type: 2}
 --- !u!1 &371695048
 GameObject:

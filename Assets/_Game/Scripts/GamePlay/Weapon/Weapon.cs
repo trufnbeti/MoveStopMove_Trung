@@ -30,6 +30,6 @@ public class Weapon : MonoBehaviour
 
 	private IEnumerator WaitForReload(float time) {
 		yield return CacheComponent.GetWFS(time);
-		OnEnable();
+		SetActive(true);
 	}
 }

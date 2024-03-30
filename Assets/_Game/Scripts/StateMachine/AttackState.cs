@@ -7,7 +7,7 @@ public class AttackState : IState<Bot>
 	public void OnEnter(Bot t) {
 		t.OnStopMove();
 		t.OnAttack();
-		if (t.IsCanAttack) {
+		if (t.IsCanAttack && t.Target != null && !t.Target.IsDead) {
 			t.Counter.Start(() => {
 					t.Throw();
 					t.Counter.Start(() => {
@@ -15,6 +15,8 @@ public class AttackState : IState<Bot>
 						}, Constant.TIME_DELAY_THROW);
 				}, Constant.TIME_DELAY_THROW
 			);
+		} else {
+			t.ChangeState(Utilities.Chance(50) ? new IdleState() : new PatrolState());
 		}
 	}
 

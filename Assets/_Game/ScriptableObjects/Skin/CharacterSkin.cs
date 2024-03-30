@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSkin<T> : ScriptableObject
+[Serializable]
+public class CharacterSkin<T>
 {
     [SerializeField] private List<T> prefabs = new List<T>();
         

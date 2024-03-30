@@ -9,5 +9,4 @@ public class SkinManager : Singleton<SkinManager>
     public CharacterSkin<Material> pantData;
     public CharacterSkin<Skin> skinData;
     public WeaponData weaponData;
-
 }

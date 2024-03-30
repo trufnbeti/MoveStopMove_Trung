@@ -10,6 +10,7 @@ public class Character : GameUnit {
 	
 	private List<Character> targets = new List<Character>();
 	protected Character target;
+	public Character Target => target;
 	
 	[SerializeField] private Vector3 targetPoint;
 

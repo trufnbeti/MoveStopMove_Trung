@@ -151,6 +151,7 @@ public class Player : Character
 		base.AddTarget(target);
 		if (!target.IsDead && !IsDead) {
 			if (!counter.IsRunning && !isMoving) { //dang dung im thi co thang di vao
+				base.target = target;
 				OnAttack();
 			}
 		}
