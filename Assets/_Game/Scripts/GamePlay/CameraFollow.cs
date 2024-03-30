@@ -11,7 +11,7 @@ public class CameraFollow : Singleton<CameraFollow>
     [SerializeField] private Transform target;
     public Camera cam;
     private CameraState state;
-    private Vector3 targetOffset;
+    [SerializeField]private Vector3 targetOffset;
     private Quaternion targetRotate;
 
     private void Awake() {

@@ -686,7 +686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tf: {fileID: 963194228}
   offset: {x: 0, y: 20, z: -15}
-  offsetMax: {x: 0, y: 45, z: -27}
+  offsetMax: {x: 0, y: 50, z: -27}
   offsetMin: {x: 0, y: 16, z: -10}
   offsets:
   - {fileID: 706598783}
@@ -695,6 +695,7 @@ MonoBehaviour:
   moveSpeed: 10
   target: {fileID: 2082722315}
   cam: {fileID: 963194227}
+  targetOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1034310918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,7 +1206,7 @@ MonoBehaviour:
     volume: 1
   - type: 4
     clip: {fileID: 8300000, guid: 16b52ebdd0399bc4a895304229d1ef43, type: 3}
-    volume: 0.5
+    volume: 0.8
   - type: 5
     clip: {fileID: 8300000, guid: bd8d998c0f9f63b4d98cf16d5a08d1a4, type: 3}
     volume: 0.25
