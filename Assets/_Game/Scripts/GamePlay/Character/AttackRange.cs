@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AttackRange : MonoBehaviour
 {
-    [SerializeField] Character character;
+    [SerializeField] Character owner;
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag(GameTag.Character.ToString())) {
             Character target = CacheComponent.GetCharacter(other);
-            if (!target.IsDead && !character.IsDead) {
-                character.AddTarget(target);
+            if (!target.IsDead && !owner.IsDead) {
+                owner.AddTarget(target);
             }
         }
     }
@@ -18,7 +19,7 @@ public class AttackRange : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if (other.CompareTag(GameTag.Character.ToString())) {
             Character target = CacheComponent.GetCharacter(other);
-            character.RemoveTarget(target);
+            owner.RemoveTarget(target);
         }
     }
 }

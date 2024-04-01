@@ -22,19 +22,8 @@ public class Bullet : GameUnit
 		if (other.CompareTag(GameTag.Character.ToString())) {
 			Character hit = CacheComponent.GetCharacter(other);
 			
-			if (hit != null && hit != owner && !hit.IsDead && !owner.IsDead) {
-				owner.AddScore();
+			if (hit != null && hit != owner && GameManager.Ins.IsState(GameState.Gameplay)) {
 				hit.OnHit(owner);
-				
-				if (owner is Player || hit is Player) {
-					VibrationsManager.instance.TriggerMediumImpact();
-					
-					if (owner is Player) {
-						int score = owner.Score;
-						float distance = Mathf.Round(Vector3.Distance(owner.TF.position, hit.TF.position) * 10f) / 10f;
-						SimplePool.Spawn<TextCombat>(PoolType.TextCombat, Vector3.zero, Quaternion.identity).OnInit(1, distance, score % 2 == 0);
-					}
-				}
 				
 				OnDespawn();
 			}

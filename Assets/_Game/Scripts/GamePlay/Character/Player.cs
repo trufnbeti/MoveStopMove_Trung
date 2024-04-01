@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.NiceVibrations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -68,9 +69,11 @@ public class Player : Character
 
 	public override void OnHit(Character character) {
 		if (!IsDead) {
+			VibrationsManager.instance.TriggerMediumImpact();
 			attacker = character;
 			ranking = LevelManager.Ins.TotalCharater;
 		}
+		
 		base.OnHit(character);
 	}
 
@@ -81,11 +84,6 @@ public class Player : Character
 
 		base.OnDeath();
 		counter.Cancel();
-	}
-
-	public override void OnStopMove() {
-		base.OnStopMove();
-		rb.velocity = Vector3.zero;
 	}
 
 	#region Skin
@@ -151,7 +149,7 @@ public class Player : Character
 		base.AddTarget(target);
 		if (!target.IsDead && !IsDead) {
 			if (!counter.IsRunning && !isMoving) { //dang dung im thi co thang di vao
-				base.target = target;
+				this.target = target;
 				OnAttack();
 			}
 		}
@@ -192,7 +190,8 @@ public class Player : Character
 			direct = new Vector3(joystick.Horizontal, 0, joystick.Vertical).normalized;
 			
 			if (Input.GetMouseButton(0) && Vector3.Distance(direct, Vector3.zero) > 0.1f) {
-				rb.velocity = direct * moveSpeed;
+				rb.MovePosition(rb.position + direct * moveSpeed * Time.deltaTime);
+				TF.position = rb.position;
 				TF.forward = direct;
 				ChangeAnim(Anim.run.ToString());
 				isMoving = true;

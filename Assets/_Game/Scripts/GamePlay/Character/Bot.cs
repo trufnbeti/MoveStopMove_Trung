@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.NiceVibrations;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = System.Random;
@@ -72,9 +73,23 @@ public class Bot : Character {
 	
 	public override void AddTarget(Character target) {
 		base.AddTarget(target);
+		if (this.target == null) {
+			this.target = target;
+		}
 		if (!IsDead && Utilities.Chance(50) && IsCanRunning) {
 			ChangeState(new AttackState());
 		}
+	}
+
+	public override void OnHit(Character character) {
+		if (character is Player && !IsDead) {
+			VibrationsManager.instance.TriggerMediumImpact();
+			int score = character.Score;
+			float distance = Mathf.Round(Vector3.Distance(character.TF.position, TF.position) * 10f) / 10f;
+			SimplePool.Spawn<TextCombat>(PoolType.TextCombat, Vector3.zero, Quaternion.identity).OnInit(1, distance, score % 2 == 0);
+		}
+		
+		base.OnHit(character);
 	}
 
 	private IEnumerator WaitForDespawn(float time) {

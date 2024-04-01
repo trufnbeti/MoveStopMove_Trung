@@ -28,9 +28,9 @@ public class CameraFollow : Singleton<CameraFollow>
         targetOffset = offsets[(int)state].localPosition;
         targetRotate = offsets[(int)state].localRotation;
     }
-    private void FixedUpdate() {
-        offset = Vector3.Lerp(offset, targetOffset, Time.fixedDeltaTime * moveSpeed);
-        tf.rotation = Quaternion.Lerp(tf.rotation, targetRotate, Time.fixedDeltaTime * moveSpeed);
-        tf.position = Vector3.Lerp(tf.position, target.position + targetOffset, Time.fixedDeltaTime * moveSpeed);
+    private void LateUpdate() {
+        offset = Vector3.Lerp(offset, targetOffset, Time.deltaTime * moveSpeed);
+        tf.rotation = Quaternion.Lerp(tf.rotation, targetRotate, Time.deltaTime * moveSpeed);
+        tf.position = Vector3.Lerp(tf.position, target.position + targetOffset, Time.deltaTime * moveSpeed);
     }
 }

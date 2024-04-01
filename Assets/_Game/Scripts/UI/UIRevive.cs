@@ -17,12 +17,12 @@ public class UIRevive : UICanvas
 
     public override void Open() {
         base.Open();
-        StartCoroutine(Cout(counter));
+        StartCoroutine(Counter(counter));
     }
 
     public override void CloseDirectly() {
         base.CloseDirectly();
-        StopCoroutine(Cout(counter));
+        StopCoroutine(Counter(counter));
     }
 
     public void OnBtnCloseClick() {
@@ -38,7 +38,7 @@ public class UIRevive : UICanvas
         UIManager.Ins.OpenUI<UIGameplay>();
     }
 
-    private IEnumerator Cout(float time) {
+    private IEnumerator Counter(float time) {
         for (int i = 0; i < time; ++i) {
             SoundManager.Ins.Play(SoundType.Count, ref SoundManager.Ins.audioSource);
             yield return CacheComponent.GetWFS(1f);
