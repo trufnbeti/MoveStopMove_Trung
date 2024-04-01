@@ -17,7 +17,7 @@ public class UIShop : UICanvas {
 
 	private ShopItem currentItem;
 	private ShopBar currentBar;
-	private ShopItem itemEquipped;
+	[SerializeField]private ShopItem itemEquipped;
 	private int currentIdx = 0;
 
 	public ShopType shopType => currentBar.Type;
@@ -80,6 +80,10 @@ public class UIShop : UICanvas {
 			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(currentIdx, shopType);
 			currentItem.SetState(itemState);
 		}
+		
+		if (itemEquipped != null) {
+			itemEquipped.SetState(ItemState.Equipped);
+		}
 
 		currentItem = item;
 		currentIdx = Convert.ToInt32(currentItem.itemType);
@@ -118,20 +122,15 @@ public class UIShop : UICanvas {
 
 	public void OnBtnEquipClick() {
 		if (currentItem != null) {
-			int equippedIdx = itemEquipped ? Convert.ToInt32(itemEquipped.itemType) : 0;
-			DataManager.Ins.SetStateData(currentIdx, 2, shopType);
-			DataManager.Ins.SetStateData(equippedIdx, 1, shopType);
 			
 			switch (shopType) {
 				case ShopType.Hat:
-					DataManager.Ins.HatStatus[0] = 0;
 					DataManager.Ins.IdHat = currentIdx;
 					break;
 				case ShopType.Pant:
 					DataManager.Ins.IdPant = currentIdx;
 					break;
 				case ShopType.Accessory:
-					DataManager.Ins.AccessoryStatus[0] = 0;
 					DataManager.Ins.IdAccessory = currentIdx;
 					break;
 				case ShopType.Skin:
@@ -155,12 +154,14 @@ public class UIShop : UICanvas {
 			int id = Convert.ToInt32(itemDatas[i].type);
 			ItemState itemState = (ItemState)DataManager.Ins.GetStateData(id, shopType);
 			ShopItem item = miniPool.Spawn();
-			item.SetData(itemDatas[i], this);
-			item.SetState(itemState);
 			
-			if (itemState == ItemState.Equipped) {
+			if (id == DataManager.Ins.GetIdEquipped(shopType)) {
+				itemState = ItemState.Equipped;
 				itemEquipped = item;
 			}
+			
+			item.SetData(itemDatas[i], this);
+			item.SetState(itemState);
 		}
 	}
 }

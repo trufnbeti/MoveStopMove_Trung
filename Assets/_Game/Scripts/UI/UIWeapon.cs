@@ -55,8 +55,6 @@ public class UIWeapon : UICanvas
 
     public void OnBtnEquipClick() {
         if (currentWeapon != null) {
-            DataManager.Ins.SetStateData(currentIdx, 2, ShopType.Weapon);
-            DataManager.Ins.SetStateData(DataManager.Ins.IdWeapon, 1, ShopType.Weapon);
             DataManager.Ins.IdWeapon = currentIdx;
             
             LoadBtn();
