@@ -214,26 +214,13 @@ public class DataManager : Singleton<DataManager>
     }
 
     public int GetStateData(int index, ShopType type) {
-        int res = 0;
-        switch (type) {
-            case ShopType.Skin:
-                res = SkinStatus[index];
-                break;
-            case ShopType.Weapon:
-                res = WeaponStatus[index];
-                break;
-            case ShopType.Accessory:
-                res = AccessoryStatus[index];
-                break;
-            case ShopType.Hat:
-                res = HatStatus[index];
-                break;
-            case ShopType.Pant:
-                res = PantStatus[index];
-                break;
-        }
-
-        return res;
+        return type switch {
+            ShopType.Skin => SkinStatus[index],
+            ShopType.Weapon => WeaponStatus[index],
+            ShopType.Accessory => AccessoryStatus[index],
+            ShopType.Hat => HatStatus[index],
+            ShopType.Pant => PantStatus[index],
+        };
     }
     
     #endregion
